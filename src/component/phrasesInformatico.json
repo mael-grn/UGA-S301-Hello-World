@@ -1,0 +1,100 @@
+{
+    "homePage": {
+        "introduction":[
+            "Bonjour ! Savez-vous que les chats retombent toujours sur leurs pattes ?",
+            "Enfin bref, là n'est pas le sujet. Je me présente, je suis Informatico, votre assistant virtuel.",
+            "Mon job, c'est de vous faciliter la vie pendant que vous domptez les mystères du code.",
+            "On va ensemble explorer des exercices, jouer à des jeux pour rendre tout cela plus sympa, et même tester vos connaissances avec des QCM.",
+            "Prêt(e) à plonger dans le monde du code avec sérieux et détermination ? Let's do this! 💻🌐"
+        ]
+    },
+
+    "MenuEleve": {
+        "FirstConnect":[
+            "Bienvenue sur ta page principale ! Ici, tu vas pouvoir faire des QCM, des jeux en solo ou avec tes amis !",
+            "Par contre, si tu veux pouvoir jouer en ligne avec tes amis, il va falloir que tu demandes à ton professeur de t'ajouter au groupe classe...",
+            "Enfin bref, c'est tout pour le moment. Je reviendrai si jamais tu as besoin d'aide ! Sur ce, amuse-toi bien et que tes bugs soient plus rares que les mises à jour de Windows un lundi matin ! 🐛😜"
+        ]
+    },
+
+    "QCM": {
+        "lowScore":[
+            "Oh là là, ta note au QCM, c'est comme un code avec plein de bugs ! On dirait que ton cerveau a fait une erreur de segmentation. Pas de stress, on va réinitialiser tes connaissances et repartir sur de bonnes bases. 😄"
+        ],
+        "highScore":[
+            "Ah, une bonne note ? C'est cool, je suppose. C'est comme si ton code avait enfin réussi à compiler après des tentatives interminables. Félicitations, je suppose que même un ordinateur cassé affiche la bonne heure deux fois par jour. 😏"
+        ]
+    },
+
+    "Resof": {
+        "connexion": [
+            "Bienvenue sur Reso'f Kingdom ! Ici, tu devras créer ton royaume de réseau ! Le but est de récupérer un maximum de ressources et de données.",
+            "Commence par poser un ordinateur sur une case bleue pour miner des ressources."
+        ],
+        "lvl1" : [
+            "Wow, impressionnant !",
+            "Tu as réussi à passer le premier niveau. Tu es vraiment destiné à devenir le meilleur des seigneurs !",
+            "Bonne chance dans la suite de ton périple !",
+            "SURTOUT, N'OUBLIE JAMAIS...",
+            "Que les chats retombent toujours sur leurs pattes."
+        ],
+        "lvl2" :[
+            "Et bah dis donc encore un niveau de passer !",
+            "A ce stade tu as du rencontrer de terribles attaques sur tes machines,ou pas, en tout cas bonne chance pour la suite",
+            " MAIS SURTOUT, N'OUBLIE JAMAIS...",
+            "Une tartine tombera toujours du coté tartiné !"
+        ],
+        "firstComputer" :[
+            "Bravo, tu as réussi à placer ton premier ordinateur, tu m'impressionnes !",
+            "Maintenant, essaie de placer un switch pour commencer à miner des ressources.",
+            "N'oublie pas de bien configurer ton ordinateur et ton switch en cliquant dessus, sinon, il sera aussi inutile que le bouton porte ouverte sur un frigo..."
+        ],
+        "firstInfected" :[
+            "ATTENTION !!!!!!!!!!!!!",
+            "Je crois que l'un de tes ordinateurs a attrapé un vilain virus ! Toutes ses informations ont été supprimées ! Tu dois maintenant le reconfigurer pour qu'il puisse fonctionner de nouveau..."
+        ],
+        "firstSwitch" :[
+            "Toutes mes félicitations ! Ton premier switch est posé ! Tu peux dès maintenant ajouter un routeur et le relier à ton switch."
+        ],
+        "firstRouter" :[
+            "Quel talent ! Je n'ai jamais vu un tel niveau ! Je suis sous le choc ! Tu as réussi à poser... UN ROUTEUR !!?? J'en perds mes bits...",
+            "Enfin bref, juste pour te dire que tu peux maintenant relier un serveur à ton routeur. Les serveurs permettent de miner des données. N'oublie pas de les poser sur les cases vertes, sinon ils ne marcheront pas..."
+        ]
+    },
+
+    "SQuisine": {
+        "Tuto": [
+            "Salut toi, futur chef de la base de données ! Bienvenue dans SQuisine Lite, le jeu où tu deviendras le maître des requêtes et des saveurs SQL.",
+            "Imagine-toi dans une cuisine virtuelle remplie de tables et de colonnes. Les colonnes, c'est comme les ingrédients, chacune d'elles contient une saveur unique de données. Les tables sont les recettes qui rassemblent ces saveurs.",
+            "Alors, comment cuisiner avec SQL ? C'est simple ! Tu vas utiliser des requêtes pour extraire, insérer, mettre à jour et supprimer des données. Chaque requête est comme une recette magique qui transforme tes ingrédients de données.",
+            "Passons aux ingrédients SQL. SELECT est comme le sel, il ajoute de la saveur à ta requête en te permettant de choisir les colonnes que tu veux afficher. FROM est la farine, l'ingrédient principal, qui te donne la base de ta requête.",
+            "WHERE est comme les épices, il te permet de filtrer tes données en fonction de certaines conditions.",
+            "Mais attention, même en cuisine SQL, il y a des règles. Assure-toi d'utiliser les clauses SQL avec précaution pour éviter les erreurs. Et surtout, ne mélange pas les types de données comme si tu essayais de faire un dessert salé avec du sucre et du sel !",
+            "Allez, à toi de jouer, courageux futur chef SQL ! Crée des requêtes qui feraient saliver même les serveurs de base de données les plus exigeants.",
+            "Et n'hésite pas si tu as des questions, même si parfois mes explications sont aussi complexes qu'une requête SQL mal écrite !"
+        ]
+    },
+    "ShellHunt": {
+        "Tuto": [
+            "Bienvenue dans ShellHunt, le jeu d'enquêtes dans un terminal bash ! Prépare-toi à plonger dans une aventure où tu devras utiliser des commandes bash pour résoudre des mystères et traquer les coupables.",
+            "Tu te trouves dans une ville virtuelle regorgeant de lieux, de dossiers et de fichiers. Utilise les commandes cd, ls et ls -l pour te déplacer, explorer et dénicher des indices. Chacune de ces commandes est comme un outil essentiel dans ton kit d'enquêteur.",
+            "Veille à ne pas te perdre dans les dossiers en utilisant judicieusement la commande cd .. pour remonter d'un niveau. Utilise mkdir pour créer un dossier, et en ajoutant -r, crée un fichier. Prends garde aux doublons et veille à ne pas créer deux éléments portant le même nom ! La commande nano te permettra d'afficher et de modifier le contenu du fichier.",
+            "La sécurité avant tout ! Si tu souhaites supprimer un dossier ou un fichier, la commande rm est à ta disposition. Assure-toi de faire le bon choix, car une suppression est irréversible.",
+            "Pour soumettre ta réponse, exécute ton fichier dans lequel la réponse est formulée sous la forme 'Coupable;Arme;Lieu'. Mais attention, tu n'as que 3 chances pour résoudre l'énigme.",
+            "Prêt à résoudre des énigmes et à démêler des intrigues ? N'hésite pas à poser des questions si tu te sens perdu, même si parfois les réponses sont aussi complexes qu'une commande mal écrite !"
+            ]
+      }, 
+      "TurtleGame": {
+        "Tuto": [
+            "Bienvenue dans TurtleGame, le jeu de dessin grâce à Python Turtle. Prépare-toi à dessiner des formes plus rocambolesques les unes que les autres !",
+            "Le jeu est simple, tu dois simplement dessiner la forme qu'on te demande.",
+            "Pour l'instant, le multijoueur en ligne n'est pas disponible, mais tu peux quand même jouer à plusieurs !",
+            "Quand tu lances la partie, clique sur 'afficher réponse' en demandant à tes camarades de ne pas regarder ce que tu dois dessiner. Quand c'est bon, tu leur dis et c'est parti !",
+            "J'oubliais, le bloc 'for' est spécial. Tu dois le construire en utilisant les autres blocs, puis le déposer quand il est prêt !",
+            "Bonne chance, futur Michel-Ange du Python !"
+        ]
+      }
+
+    
+
+}

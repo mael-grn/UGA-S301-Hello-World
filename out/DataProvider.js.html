@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: DataProvider.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: DataProvider.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// AuthContext.js
+import React, { createContext, useState, useEffect } from "react";
+import axios from 'axios';
+// import config from './config'; // Assurez-vous de spécifier le chemin correct
+
+/**
+ * AuthProvider permet de gerer l'authentification d'un utilisateur. Il vas faire les requete vers le serveur pour authentifier le compte,
+ * sauvegarder les données importantes dans un contexte qui restera global à l'application, et aussi dans les cookies.
+ */
+
+//créée un context, cela sauvegardera tous les useStates déclarés dans toutes l'application. Ainsi, ces données seront
+//facilement récuperable pour verifier l'utilisateur, récuperer ses données.
+export const DataContext = createContext();
+
+export const DataProvider = ({ children }) => {
+;
+  //toutes les données de l'utilisateur
+  const [userName, setUserName] = useState(localStorage.getItem('userName') || null);
+  const [name, setName] = useState(localStorage.getItem('name') || null);
+  const [surName, setSurName] = useState(localStorage.getItem('surName') || null);
+  const [group, setGroup] = useState(localStorage.getItem('group') || null);
+  const [teacher, setTeacher] = useState(JSON.parse(localStorage.getItem('teacher')));
+  const [isConnected, setIsConnected] = useState((localStorage.getItem('isConnected'))); 
+
+  /**
+   * Mettre a jours les données de l'utilisateur
+   * @param {*} userName le login
+   * @param {*} name le prénom
+   * @param {*} surName le nom
+   * @param {*} group le groupe de l'utilisateur, si c'est un élève
+   * @param {*} teacher true si l'utilisateur est un professeur
+   * @param {*} isConnected true s'il l'utilisateur s'est correctement loggé
+   */
+  const setUserData = (userName, name, surName, group, teacher, isConnected, token) => {
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('name', name);
+    localStorage.setItem('surName', surName);
+    localStorage.setItem('group', group);
+    localStorage.setItem('teacher', teacher);
+    localStorage.setItem('isConnected', isConnected);
+    localStorage.setItem('authToken', token);
+    window.location.replace('/');
+  }
+
+    //permet de deconnecter l'utilisateur  
+    const logout = () => {
+    
+      localStorage.removeItem('userName');
+      localStorage.removeItem('name');
+      localStorage.removeItem('surName');
+      localStorage.removeItem('group');
+      localStorage.removeItem('teacher');
+      localStorage.removeItem('isConnected');
+      localStorage.removeItem('qcm')
+      localStorage.removeItem('authToken')
+      window.location.replace('/');
+  
+      setUserName(null);
+      setName(null);
+      setSurName(null);
+      setGroup(null);
+      setTeacher(false);
+      setIsConnected(false);
+    };
+
+  const addInformaticoSentence = (sentence) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/addSentenceInformatico`, {login:userName, sentence:sentence}).then(response => {
+      
+    }).catch(error => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * return true si informatico à jamais une phrase
+   * @param {*} sentence la phrase à verifier
+   */
+  const checkInformaticoSentence = (sentence) => {
+    return new Promise((resolve, reject) => {
+      axios.get(`${process.env.REACT_APP_DB_URL}/getSentencesInformatico?login=${userName}`)
+        .then(response => {
+          const sentences = response.data.sentences.split(',');
+          resolve(!sentences.includes(sentence));
+        })
+        .catch(error => {
+          if (error.response &amp;&amp; error.response.status === 404) {
+            resolve(true);
+          } else {
+            reject(error); // Vous devriez rejeter l'erreur ici pour la capturer en dehors
+          }
+        });
+    });
+  };
+
+  //les données du groupe
+  const [idGroupe, setIdGroupe] = useState(localStorage.getItem('idGroupe') || null);
+  const [niveau, setNiveau] = useState(localStorage.getItem('niveau') || null);
+  const [dateCreation, setDateCreation] = useState(localStorage.getItem('dateCreation') || null);
+  const [professeur, setProfesseur] = useState(localStorage.getItem('professeur') || null);
+
+  /**
+   * Mettre a jour les données du groupe
+   * @param {*} idGroupe l'identifiant du groupe
+   * @param {*} niveau le niveau du groupe (par exemple terminal)
+   * @param {*} dateCreation 
+   * @param {*} professeur le professeur responsable du groupe
+   */
+  const setGroupeData = (idGroupe,niveau,dateCreation,professeur) => {
+    localStorage.setItem('idGroupe', idGroupe);
+    localStorage.setItem('niveau', niveau);
+    localStorage.setItem('dateCreation', dateCreation);
+    localStorage.setItem('professeur', professeur);
+    window.location.replace('/');
+
+  }
+
+  /**
+   * Verification de la session de l'utilisateur à l'aide d'un token. Sera appelé à chaque fois que des données sensibles sont changées
+   */
+  useEffect(() => {
+    const token = localStorage.getItem('authToken') || null;
+  
+    // Créer une source d'annulation  
+    if (token !== null &amp;&amp; isConnected) {
+      axios.get(`${process.env.REACT_APP_DB_URL}/checkToken?token=${token}`).then(response => {
+        if (!isConnected) {
+          setIsConnected(true);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+    } else if (token === null &amp;&amp; isConnected) {
+      // Déconnectez l'utilisateur si le token est null et isConnected est vrai
+      logout();
+    }
+  
+  }, [isConnected, logout, teacher]);
+  
+
+  
+
+
+  /**
+   * Mettre a jours les données du groupe, SEULEMENT en local
+   * @param {*} newGroup 
+   */
+  const updateGroup = (newGroup) => {
+    setGroup(newGroup);
+    localStorage.setItem('group', newGroup);
+    //ajouter ici la mise a jours de la BD
+  };
+  /**
+   * Verifier dans la base les données de connexion d'un utilisateur.
+   * @param {*} userName son login
+   * @param {*} password son mot de passe
+   */
+  const login = (userName, password) => {
+    //Pour le developpement. Permet de directement, en local, se connecter avec un compte prof
+    if (userName==="prof" &amp;&amp; password === "prof") {
+      setUserData("PROF", "Monsieur", "Professeur", null, true, true);
+      return;
+    }
+    //Pour le developpement. Permet de directement, en local, se connecter avec un compte etu
+    if (userName==="etu" &amp;&amp; password === "etu") {
+      setUserData("ETU", "Monsieur", "Eleve", null, false, true);
+      return;
+    }
+    //requete vers la base de données pour chercher l'utilisateur. Appel la fonction login coté serveur
+
+    //return "Le serveur est indisponible pour le moment";
+
+    return new Promise((resolve, reject) => {
+
+      axios.get(`${process.env.REACT_APP_DB_URL}/user?login=${userName}&amp;password=${password}&amp;teacher=${teacher}`).then(response => {
+        setUserData(response.data.login, response.data.prenom, response.data.nom, response.data.group, response.data.teacher, true, response.data.token);
+        resolve(true);
+      }).catch(error => {
+        reject(error);
+      });
+    });
+  }
+
+    const getGroupesProf = () => {
+      //requete vers la base de données pour chercher l'utilisateur. Appel la fonction groupes coté serv
+      return new Promise((resolve, reject) => {
+      axios.get(`${process.env.REACT_APP_DB_URL}/getGroupesDuProf?prof=${userName}`)
+        .then(response => {
+          resolve(response.data.groupes);
+        })
+        .catch(error => {
+          reject(error);
+        });
+      });
+       // return "Le serveur est indisponible pour le moment";
+    }
+  /**
+   * rentre des données d'un nouvel utilisateur dans la base, et connecte l'utilisateur
+   * @param {*} prenom 
+   * @param {*} nom 
+   * @param {*} dateNaiss 
+   * @param {*} teacher 
+   * @param {*} password 
+   * @param {*} consentement
+   */
+  const register = (prenom, nom, dateNaiss, teacher, password,accordParent) => {
+    console.log(process.env.REACT_APP_DB_URL);
+    return new Promise((resolve, reject) => {
+
+      axios.post(`${process.env.REACT_APP_DB_URL}/register`, {prenom:prenom, nom:nom,  password:password, dateNaiss:dateNaiss, teacher:teacher,accordParent:accordParent})
+      .then(response => {
+        const { message, login, token } = response.data;
+        resolve(true);
+        setUserData(login, prenom, nom, null, teacher, true, token);
+      })
+      .catch(error => {
+        reject(error);
+      });
+
+    });
+      
+
+    //return "Le serveur est indisponible pour le moment";
+
+  
+
+  };
+
+  /**
+   * Mets à jours le qcm pour un certain jeu, pour l'utilisateur courant
+   * correspond à mettre l'attribut qcm sur true, pour dire que l'utilisateur à effectué le qcm pour un jours
+   * @param {*} game 
+   */
+    const majQcm  =(game,note) =>{
+      
+      let qcmListe = [];
+
+      // Utiliser une promesse pour gérer de manière asynchrone la réponse axios
+      const fetchData = () => {
+        return new Promise((resolve, reject) => {
+          axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneQcm?login=${userName}&amp;game=${game}`)
+            .then(response => {
+              const { message, qcm } = response.data;
+              if (message === 'success') {
+                qcmListe = qcm.split(',');
+                if (qcmListe[qcmListe.length - 1] === '') {
+                  qcmListe.pop(); // Retire le dernier élément s'il est vide
+                }
+                resolve(qcmListe); // Résoudre la promesse avec qcmListe
+              } else {
+                reject(new Error('Erreur lors de la récupération des données'));
+              }
+            })
+            .catch(error => {
+              console.error('Erreur lors de l\'ajout de QCM:', error);
+              reject(error);
+            });
+        });
+      };
+      
+      // Utiliser fetchData
+      fetchData()
+        .then(result => {
+          // Maintenant, vous pouvez utiliser qcmListe en dehors du bloc axios.get
+          if(game==='SQuisine'){
+              result[0]=note;
+            }
+          else if(game==='resofkingdom'){
+            result[1]=note;
+          }
+          else if(game ==='shellHunt'){
+            result[2]=note;
+          }
+          else if(game === 'TurtleGame'){
+            result[3]=note;
+          }
+          const qcmNew=result.join(',');
+          
+          axios.post(`${process.env.REACT_APP_DB_URL}/majQcm?login=${userName}&amp;qcmNew=${qcmNew}`)      
+          .then(response => {
+            const { message} = response.data;
+            if (message === 'success') {
+              return true;
+            } else {
+              return false;
+            }
+          })
+          .catch(error => {
+            console.error('Erreur lors de l\'ajout de QCM:', error);
+          });
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite:', error);
+        });
+  }
+
+
+  /**
+   * retourne si l'utilisateur à déjà fait le qcm pour un jeu donné
+   * @param {*} game le jeu à verifier
+   * @returns true si le joueur à deja fait le qcm
+   */
+  const qcmDone = (game) => {
+    return new Promise((resolve, reject) => {
+      axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneQcm?login=${userName}&amp;game=${game}`)
+        .then(response => {
+          const qcmListe = response.data.qcm.split(',');
+          if (qcmListe[qcmListe.length - 1] === '') {
+            qcmListe.pop(); // Retire le dernier élément s'il est vide
+          } 
+          if (game==='SQuisine' &amp;&amp; qcmListe[0]!=='false'){
+            resolve(qcmListe[0]);
+          }
+          else if (game==='SQuisineSolo' &amp;&amp; qcmListe[0]!=='false'){
+            resolve(qcmListe[0]);
+          }
+          else if(game==='Resofkingdom' &amp;&amp; qcmListe[1]!=='false'){
+            resolve(qcmListe[1]);
+          }
+          else if(game==='ShellHunt' &amp;&amp; qcmListe[2]!=='false'){
+            resolve(qcmListe[2]);
+          }
+          else if(game==='TurtleGame' &amp;&amp; qcmListe[3]!=='false'){
+            resolve(qcmListe[3]);
+          }
+          else{
+            resolve(false);
+          }
+          
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  };
+
+
+  /**
+   * Mets à jours le qcm pour un certain jeu, pour l'utilisateur courant
+   * correspond à mettre l'attribut qcm sur true, pour dire que l'utilisateur à effectué le qcm pour un jours
+   * @param {*} game 
+   */
+  const majTuto =(game,statut) =>{
+      
+    let tutoListe = [];
+
+    // Utiliser une promesse pour gérer de manière asynchrone la réponse axios
+    const fetchData = () => {
+      return new Promise((resolve, reject) => {
+        axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneTuto?login=${userName}&amp;game=${game}`)
+        .then(response => {
+            const { tuto } = response.data;
+            
+            tutoListe = tuto.split(',');
+            if (tutoListe[tutoListe.length - 1] === '') {
+              tutoListe.pop(); // Retire le dernier élément s'il est vide
+            }
+            resolve(tutoListe); // Résoudre la promesse avec qcmListe
+          
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
+    };
+    
+    // Utiliser fetchData
+    fetchData()
+      .then(result => {
+        // Maintenant, vous pouvez utiliser qcmListe en dehors du bloc axios.get
+        if(game==='SQuisine'){
+            result[0]=statut;
+          }
+        else if(game==='Resof'){
+          result[1]=statut;
+        }
+        else if(game ==='shellHunt'){
+          result[2]=statut;
+        }
+        const tutoNew=result.join(',');
+        
+        axios.post(`${process.env.REACT_APP_DB_URL}/majTuto?login=${userName}&amp;tutoNew=${tutoNew}`)      
+        .then(response => {
+          return true;
+        })
+        .catch(error => {
+          return false;
+        });
+      })
+      .catch(error => {
+        return false;
+      });
+}
+
+
+  /**
+   * retourne si l'utilisateur à déjà fait le qcm pour un jeu donné
+   * @param {*} game le jeu à verifier
+   * @returns true si le joueur à deja fait le qcm
+   */
+  const getTuto = (game) => {
+    return new Promise((resolve, reject) => {
+      axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneTuto?login=${userName}&amp;game=${game}`)
+        .then(response => {
+          const { message, tuto } = response.data;
+            const tutoListe = response.data.tuto.split(',');
+            if (tutoListe[tutoListe.length - 1] === '') {
+              tutoListe.pop(); // Retire le dernier élément s'il est vide
+            } 
+            if (game==='SQuisine' &amp;&amp; tutoListe[0]!=='false'){
+              resolve(tutoListe[0]);
+            }
+            else if(game==='Resof' &amp;&amp; tutoListe[1]!=='false'){
+              resolve(tutoListe[1]);
+            }
+            else if(game==='ShellHunt' &amp;&amp; tutoListe[2]!=='false'){
+              resolve(tutoListe[2]);
+            }
+            else{
+              resolve(false);
+            }
+          
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  };
+
+  /**
+   * Permet de recuperer les details d'un eleve en fonction de son login
+   * @param {*} userName le nom de l'eleve dont on souhaite recuperer les infos
+   */
+  const getDetails = (userName) => {
+    return new Promise((resolve,reject) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getEleveDetails?login=${userName}`)
+    .then(response => {
+        
+        resolve(response);
+      })
+      .catch(error => {
+        reject(error);
+      });
+    })
+    //requete vers la base de données pour chercher l'utilisateur. Appel la fonction groupes coté serv
+  }
+
+  /**
+   * permet de recuperer la liste de groupes appartenant à un certain professeur
+   * @param {*} userName le nom du professeur dont on souhaite recuperer les groupes
+   */
+  const getGroupeEleve = (userName) => {
+    return new Promise((resolve,reject) => {
+      axios.get(`${process.env.REACT_APP_DB_URL}/getGroupesDuProf?prof=${userName}`)
+      .then(response => {
+        resolve(response);
+
+      })
+      .catch(error => {
+        reject(error)
+      });
+    })
+  }
+
+  /**
+   * Permet de changer le login d'un utilisateur de type eleve
+   * @param {*} username le nom d'utilisateur courant
+   * @param {*} newUserName le nouveau nom d'utilisateur
+   */
+  const setLogin = (username, newUserName) => {
+    return new Promise((resolve,reject) => {
+      axios.post(`${process.env.REACT_APP_DB_URL}/updateEleveLogin`, {
+        currentLogin: username,
+        newLogin: newUserName,
+      }).then(response => {
+        resolve(true);
+      }).catch(error => {
+        reject(error)
+      });
+  });
+}
+
+/**
+ * Permet d'ajouter un eleve à un groupe
+ * @param {*} userName le nom de l'eleve
+ * @param {*} nomGroupe le nom du groupe auquel ajouter l'eleve
+ */
+const joinGroupe = (userName,nomGroupe)=>{
+  return new Promise((resolve,reject) => {
+  axios.post(`${process.env.REACT_APP_DB_URL}/addStudentGroup`, { login:userName, groupe:nomGroupe, }).then(response => {
+    resolve(true);
+  }).catch(error => {
+    reject(error);
+  });
+  });
+}
+
+/**
+ * permet de creer un nouveau groupe dans la base de donnée
+ * Le proprietaire du groupe est l'utilisateur courant
+ * @param {*} nomGroupe le nom du nouveau groupe
+ */
+const addGroup = (nomGroupe)=>{
+  return new Promise((resolve,reject) => {
+  axios.post(`${process.env.REACT_APP_DB_URL}/addGroup`, { professeur:userName, id:nomGroupe, }).then(response => {
+    resolve(response);
+  }).catch(error => {
+    reject(error);
+  });
+  });
+}
+
+/**
+ * @param {*} groupe le groupe dont on souhaite recuperer des informations
+ * @returns une liste de login d'eleves d'un groupe
+ */
+const getEleveGroupe = (groupe)=>{
+  return new Promise((resolve,reject) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getElevesDuGroupe?groupe=${groupe}`)
+    .then(response => {
+      resolve(response);
+    })
+    .catch(error => {
+      reject(error);
+    });
+  })
+}
+
+const getElevesSansGroupe = ()=>{
+  return new Promise((resolve,reject) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getElevesSansGroupe`)
+    .then(response => {
+      resolve(response);
+    })
+    .catch(error => {
+      reject(error);
+    });
+  })
+}
+
+ const recherchePartie = () => {
+  return new Promise((resolve, reject) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/recherchePartie`, {
+      login: userName,
+      groupeId: group,
+    })
+    .then(response => {
+      const { message, data } = response.data;
+      if (message === 'success') {
+        resolve(data);
+      } else if(message=== 'Nombre maximum de tentatives atteint'){
+        window.location.replace('/');
+      }
+      else {
+        reject(message);
+      }
+    })
+    .catch(error => {
+      reject(error);
+    });
+  });
+};
+
+const deleteGames = () => {
+  return new Promise((resolve, reject) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/clearGames`, {
+      login: userName,
+    })
+    .then(response => {
+      const { message, data } = response.data;
+      if (message === 'success') {
+        resolve(data);
+      } else {
+        reject(message);
+      }
+    })
+    .catch(error => {
+      reject(error);
+    });
+  });
+};
+
+const deleteUserAcc = () => {
+  return new Promise((resolve,reject) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/deleteUser`, {
+      login: userName,
+      teacher: teacher
+    })
+    .then(response => {
+      logout();
+      resolve(response);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
+const getCoop = ()=>{
+  return new Promise((resolve,reject) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getCoequipier?login=${userName}`)
+    .then(response => {
+      resolve(response);
+    })
+    .catch(error => {
+      reject(error);
+    });
+  })
+}
+
+const getTourCoop = (coop)=>{
+  return new Promise((resolve,reject) => {
+    axios.get(`${process.env.REACT_APP_DB_URL}/getTour?coop=${coop}`)
+    .then(response => {
+      resolve(response);
+    })
+    .catch(error => {
+      reject(error);
+    });
+  })
+}
+
+const majTourSelf = (coequipier) => {
+  return new Promise((resolve,reject) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/majTour`, {
+      login: userName, 
+      coeq: coequipier
+    })
+    .then(response => {
+      resolve(response);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
+const chgmtEtatCoeq = (coequipier,fin) => {
+  return new Promise((resolve,reject) => {
+    axios.post(`${process.env.REACT_APP_DB_URL}/finJeu`, {
+      login: coequipier, 
+      typefin: fin
+    })
+    .then(response => {
+      resolve(response);
+    }).catch(error => {
+      reject(error);
+    });
+  });
+};
+
+
+
+
+ 
+
+  //juste pour integrer l'authentification à l'application globale.
+  return (
+    &lt;DataContext.Provider value={{
+      name, surName,group, userName, teacher, isConnected,idGroupe,niveau,dateCreation,professeur,
+      majQcm, login, getGroupesProf, register, logout,updateGroup, 
+      qcmDone,getDetails,getGroupeEleve,setLogin, joinGroupe,getEleveGroupe,getElevesSansGroupe,getTuto,majTuto,recherchePartie, addGroup,
+      deleteGames, deleteUserAcc, addInformaticoSentence, checkInformaticoSentence,majTourSelf,getTourCoop,getCoop,chgmtEtatCoeq
+      }}>
+      {children}
+    &lt;/DataContext.Provider>
+  );
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#DataContext">DataContext</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Jan 25 2024 15:26:30 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

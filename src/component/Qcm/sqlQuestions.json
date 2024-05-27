@@ -1,0 +1,65 @@
+[
+    {
+      "question": "Qu'est-ce qu'une clé étrangère dans le modèle relationnel?",
+      "options": ["Une clé primaire d'une autre table", "Un attribut pouvant avoir des valeurs en double", "Un critère de sélection dans une requête SQL", "Une contrainte d'intégrité pour les données numériques"],
+      "correctIndex": 0 
+    },
+
+    {
+        "question": "Qu'est-ce qu'une anomalie d'insertion dans une base de données?",
+        "options": ["La présence de données en double dans une colonne", "L'ajout d'enregistrements non conformes aux contraintes définies", "La suppression d'enregistrements sans mise à jour des clés étrangères", "La modification du type de données d'un attribut"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Quel service un SGBD offre-t-il pour assurer la persistance des données?",
+        "options": ["Sécurisation des accès", "Gestion des accès concurrents", "Stockage permanent des données sur le disque", "Efficacité de traitement des requêtes"],
+        "correctIndex": 2
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour regrouper les résultats d'une requête SELECT?",
+        "options": ["GROUP BY", "ORDER BY", "HAVING", "DISTINCT"],
+        "correctIndex": 0
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour ajouter de nouveaux enregistrements à une table?",
+        "options": ["APPEND", "INSERT", "ADD", "ATTACH"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour spécifier les colonnes à afficher dans le résultat d'une requête SELECT?",
+        "options": ["DISPLAY", "SHOW", "SELECT", "FROM"],
+        "correctIndex": 2
+      },
+      {
+        "question": "Qu'est-ce qu'une clé primaire dans le modèle relationnel?",
+        "options": ["Une clé étrangère", "Un attribut unique identifiant de manière unique chaque enregistrement dans une table", "Une contrainte de vérification", "Une table de référence"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Quelle est la principale différence entre la structure et le contenu d'une base de données relationnelle?",
+        "options": ["La structure est le contenu, et vice versa.", " La structure concerne les schémas relationnels, le contenu concerne les données elles-mêmes.", "Il n'y a pas de différence significative.", "La structure concerne les données non structurées, le contenu concerne les données structurées."],
+        "correctIndex": 1
+      },
+      {
+        "question": "Quel est le rôle principal d'un SGBD?",
+        "options": ["Créer des bases de données", "Gérer l'accès concurrent aux données", "Mettre en forme les requêtes SQL", "Collecter des informations sur les utilisateurs"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour spécifier les conditions de sélection dans une requête SELECT?",
+        "options": ["FROM", "SELECT", "WHERE", "JOIN"],
+        "correctIndex": 2
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour trier les résultats d'une requête SELECT par ordre décroissant?",
+        "options": ["SORT DESC", "ORDER BY DESC", "DESCENDING", "ORDER DESC"],
+        "correctIndex": 3
+      },
+      {
+        "question": "Quelle clause SQL est utilisée pour supprimer des enregistrements d'une table?",
+        "options": ["REMOVE", "DELETE", "DROP", "ERASE"],
+        "correctIndex": 1
+      }
+
+    
+]

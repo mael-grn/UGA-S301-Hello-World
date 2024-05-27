@@ -1,0 +1,53 @@
+[
+    {
+      "question": "À quoi sert une adresse IP ?",
+      "options": ["À identifier les machines connectées de façon unique.", "A envoyer des colis", "À différencier les gros ordinateurs et les plus petits.", " À envoyer des mails automatiquement."],
+      "correctIndex": 0
+    },
+    {
+      "question": "À l'aide de quel équipement réalise-t-on l'interconnexion de réseaux ? ",
+      "options": ["Un serveur", "Une adresse IP", "Un routeur", "une souris"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Qu'est-ce qu'un serveur de noms ? ",
+      "options": [" Un site web qui aide à choisir un prénom pour ses enfants.", " Un logiciel (pirate) qui permet de trouver les mots de passe d'autres utilisateurs.", " Une machine qui contient une table d'équivalence entre des noms de machines et leur adresse IP.", "une machine contenant tout les prenoms du monde"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Lorsqu'un ordinateur rejoint un réseau, que doit-il obtenir pour rejoindre internet ? ",
+      "options": [" Une adresse IP.", " Une autorisation de l'État.", "un passeport"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Lequel des périphériques suivants traduit le nom d'hôte en adresse IP?",
+      "options": ["Serveur DHCP", "Serveur DNS", " Hub", "Pare-feu"],
+      "correctIndex": 1
+    },
+    {
+      "question": "Pourquoi la machine qui assure l'interconnexion avec les autres réseaux d'internet (le routeur) est-elle une place de choix pour y installer des fonctions de filtrage ? ",
+      "options": [" Parce que toutes les informations passent par là.", " Parce que c'est la machine la plus puissante.", " Parce qu'elle est en général bien cachée.", "c'est une convention."],
+      "correctIndex": 0
+    },
+    {
+      "question": "RJ45 est :",
+      "options": [" La version suivante de RJ44", " Un protocole de communication wi-fi", " Un autre nom de RJ11 mais pour le téléphone", " Un connecteur utilisé pour câbles Ethernets"],
+      "correctIndex": 3
+    },
+    {
+      "question": "Que signifie un LAN ?",
+      "options": [" Local Area Network", " Low Area Network", " Local Assignement Network", "L'Antilope Nouvelle"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Lequel de ces 3 types de réseau couvre le plus en terme de densité géographique ?",
+      "options": ["BAN", "LAN", "WAN", "MAN"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Pour un réseau d'adresse 192.168.2.0/24, quel est l'adresse de broadcast:",
+      "options": [" 192.255.255.255", " 192.255.255.0", " 192.255.0.0", " 192.168.2.255"],
+      "correctIndex": 3
+    }
+    
+]

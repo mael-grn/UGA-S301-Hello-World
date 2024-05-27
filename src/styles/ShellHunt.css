@@ -1,0 +1,65 @@
+.ShellHunt {
+    margin-top: 10vh;
+}
+.ShellHunt main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+}
+
+.ShellHunt main > div:not(.Informatico) {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #2d2c2c;
+}
+
+.ShellHunt h3 {
+    color: #26fca5;
+    font-size: 30px;
+}
+
+.ShellHunt .btn-lst {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.game-info, .file-info {
+    margin-top: 5%;
+    width: 90%;
+    background-color: #151515;
+    border-radius: 15px;
+    padding: 5%;
+}
+
+.textareaGrande {
+    height: 200px;
+    width: 100%;
+    resize: vertical;
+}
+
+.dossier{
+    cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color: #151515;
+  background-color: #118a40;
+  background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+  border: none;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 10px;
+  font-weight: bold;
+  border-radius: 15px;
+  transition: all .2s ease;
+    
+}
+

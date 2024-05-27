@@ -1,0 +1,312 @@
+
+@keyframes closing-popup {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+}
+
+@keyframes bg-popup-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes bg-popup-out {
+    0% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.popup .background {
+    animation: bg-popup-in .3s;
+    z-index: 500;
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 80%;
+}
+
+.popup .closing-background {
+    animation: bg-popup-out .4s;
+    z-index: 500;
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 80%;
+}
+
+.popup .window {
+    animation: appears .3s forwards;
+    z-index: 500;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    left: 50%;
+    margin-top: -250px; /* moitié de la hauteur */
+    margin-left: -250px; /* moitié de la largeur */
+    padding-bottom: 30px;
+    align-items: center;
+    width: 500px    ;
+    height: fit-content;
+    background-color: #151515b0;
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 15px;
+}
+
+.popup .close-button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    position: absolute;
+    top: 0;
+}
+.popup .close-button button {
+    margin: 10px 10px;
+    align-items:end;
+    background: #26fca5 url(../img/cross-icon.png) center center no-repeat;
+    background-size: 15px;
+    border: none;
+    border-radius: 15px;
+    color: #151515;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    transition: all .2s ease;
+}
+
+.popup .close-button button:hover {
+    background-color: white;
+}
+
+.popup h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    margin-top: 50px;
+    color: #26fca5;
+    text-transform: uppercase;
+    font-size: 50px;
+    padding: 0 25px;
+}
+
+.popup .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #26fca5;
+    font-size: 20px;
+    background-color: #0b0b0b;
+    padding: 25px 25px;
+    margin: 0 25px 0 25px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.popup .content form {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items: center;
+    width: 70%;
+    margin: 25px;
+}
+
+.popup .content form input {
+    
+    margin: 10px 0;
+    width: 100%;
+    padding: 15px;
+    background-color: #26fca5;
+    color: #151515;
+    border-radius: 15px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: all .2s ease;
+}
+
+.popup .content form input:focus {
+    outline: none;
+    background-color: white;
+}
+.popup .message-list{
+    list-style: none;
+}
+
+.popup .big{
+    width: 850px;
+}
+
+.closing-window {
+    animation: closing-popup .4s ease;
+    z-index: 500;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    left: 50%;
+    margin-top: -250px; /* moitié de la hauteur */
+    margin-left: -250px; /* moitié de la largeur */
+    padding-bottom: 30px;
+    align-items: center;
+    width: 500px    ;
+    height: fit-content;
+    background-color: #151515ce;
+    backdrop-filter: blur(15px);
+    color: white;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 767px) {
+    .popup .background {
+        display: none;
+    }
+    
+    .popup .closing-background {
+        display: none;
+    }
+    
+    .popup .window {
+        animation: appears .3s forwards;
+        z-index: 500;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        margin-top: 0;
+        top: 0;
+        left: 0;
+        align-items: center;
+        width: 100% ;
+        height: 100%;
+        overflow-y: auto;
+        background-color: #151515b0;
+        backdrop-filter: blur(10px);
+        color: white;
+        border-radius: 15px;
+    }
+    
+    .popup .close-button {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        position: absolute;
+        top: 0;
+    }
+    .popup .close-button button {
+        margin: 10px 10px;
+        align-items:end;
+        background: #26fca5 url(../img/cross-icon.png) center center no-repeat;
+        background-size: 15px;
+        border: none;
+        border-radius: 15px;
+        color: #151515;
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        transition: all .2s ease;
+    }
+    
+    .popup .close-button button:hover {
+        background-color: white;
+    }
+    
+    .popup h1 {
+        font-family: 'Pixelify Sans', sans-serif;
+        margin-top: 50px;
+        color: #26fca5;
+        text-transform: uppercase;
+        font-size: 50px;
+        padding: 0 25px;
+    }
+    
+    .popup .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #26fca5;
+        font-size: 20px;
+        background-color: #0b0b0b;
+        padding: 25px 25px;
+        margin: 0 25px 0 25px;
+        border-radius: 15px;
+        text-align: center;
+    }
+    
+    .popup .content form {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        align-items: center;
+        width: 70%;
+        margin: 25px;
+    }
+    
+    .popup .content form input {
+        
+        margin: 10px 0;
+        width: 100%;
+        padding: 15px;
+        background-color: #26fca5;
+        color: #151515;
+        border-radius: 15px;
+        border: none;
+        font-family: 'Montserrat', sans-serif;
+        transition: all .2s ease;
+    }
+    
+    .popup .content form input:focus {
+        outline: none;
+        background-color: white;
+    }
+    .popup .message-list{
+        list-style: none;
+    }
+    
+    .popup .big{
+        width: 850px;
+    }
+    
+    .closing-window {
+        animation: closing-popup .4s ease;
+        z-index: 500;
+        position: fixed;
+        display: flex;
+        flex-direction: column;
+        top: 40%;
+        left: 50%;
+        margin-top: -250px; /* moitié de la hauteur */
+        margin-left: -250px; /* moitié de la largeur */
+        padding-bottom: 30px;
+        align-items: center;
+        width: 500px    ;
+        height: fit-content;
+        background-color: #151515b0;
+        backdrop-filter: blur(10px);
+        color: white;
+        border-radius: 15px;
+    }
+
+    .popup .button, .popup .small-button, .popup .button-red {
+        padding: 10px 20px;
+        font-size: 20px;
+    }
+
+}

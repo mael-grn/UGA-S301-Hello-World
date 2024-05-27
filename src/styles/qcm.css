@@ -1,0 +1,147 @@
+.QCM {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.QCM h1 {
+  font-family: 'Pixelify Sans', sans-serif;
+  color: #26fca5;
+  text-transform: uppercase;
+  font-size: 80px;
+}
+
+/* Styles pour le composant Question dans le contexte du QCM */
+.question {
+  background-color: #2d2c2c;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 600px;
+  height: 350px;
+}
+
+.question p {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.question .options-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.question .option {
+  color: #ffffff; /* Texte blanc pour la réponse */
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Effet de transition au survol */
+
+  /* Style de la checkbox */
+  display: flex;
+  align-items: center;
+}
+
+.question .option input {
+  margin-right: 10px;
+}
+
+.question .option:hover {
+  background-color: #545454; /* Couleur du rectangle de réponse au survol */
+}
+
+/* Style amélioré pour la checkbox */
+.question .option input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease; /* Effet de transition au survol */
+}
+
+/* Style de la checkbox pour le survol */
+.question .option input[type="radio"]:hover {
+  background-color: #545454;
+}
+
+/* Style de la checkbox cochée pour le survol */
+.question .option input[type="radio"]:checked {
+  background-color: #ffffff;
+}
+
+
+
+.correction-image {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.correction-text {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.correct {
+  color: green;
+}
+
+.incorrect {
+  color: red;
+}
+
+.QCM-submit-btn {
+  background-color: #26fca5;;
+  color: #151515;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.QCM-submit-btn:hover {
+  background-color: #ffff;
+}
+
+.QCM .title {
+  position: relative;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.QCM .back {
+  position: absolute;
+  left: 0;
+  top: 25%;
+}
+
+@media only screen and (max-width: 767px) {
+  .question {
+    background-color: #2d2c2c;
+    padding: 5%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    width: 90%;
+    height: 350px;
+  }
+  .QCM .title {
+    position: relative;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

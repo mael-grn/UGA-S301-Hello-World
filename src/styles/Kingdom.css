@@ -1,0 +1,267 @@
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-500px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+.resofkingdom {
+  overflow: hidden;
+}
+.resofkingdom main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+.resofkingdom .setPC {
+  animation: slide-from-left .5s;
+  z-index: 500;
+  background-color: #2d2c2c;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0px 15px 15px 0px;
+  overflow-x: hidden;
+}
+
+.resofkingdom .setPC .close-button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.resofkingdom .setPC .close-button button {
+  margin: 10px 10px;
+  align-items:end;
+  background: #26fca5 url(../img/cross-icon.png) center center no-repeat;
+  background-size: 15px;
+  border: none;
+  border-radius: 15px;
+  color: #151515;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  transition: all .2s ease;
+}
+
+.resofkingdom .setPC .close-button button:hover {
+  background-color: white;
+}
+
+.resofkingdom .setPC .form label{
+  display: flex;
+  flex-direction: column;
+}
+
+.resofkingdom .item-list {
+  position: absolute;
+  bottom: 20px;
+  left: 3%;
+  height: 130px;
+  width: 40%;
+  min-width: 130px;
+  background-color: #151515af;
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  transition: all .2s ease;
+}
+
+.resofkingdom .list-message {
+  padding-top: 70px;
+}
+
+.resofkingdom .list-message p {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  right: 50px;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+.resofkingdom .list-message p {
+  display: block;
+}
+
+.resofkingdom .item-list ul {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.resofkingdom .item-list ul button {
+  width: fit-content;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 10px;
+  padding: 45px 0 0 0;
+  height: 100px;
+  width: 100px;
+  color: white;
+  transition: all .2s ease;
+  border-radius: 15px;
+}
+
+.resofkingdom .item-list ul button span {
+  padding: 0 5px;
+  font-size: 13px;
+  display: none;
+}
+
+.resofkingdom .item-list .computer {
+  background: url(../img/computer.png) center 5px no-repeat;
+  background-size: 40px 40px;
+}
+
+.resofkingdom .item-list .switch {
+  background: url(../img/switch.png) center 5px no-repeat;
+  background-size: 40px 40px;
+}
+
+.resofkingdom .item-list .router {
+  background: url(../img/router.png) center 5px no-repeat;
+  background-size: 40px 40px;
+}
+
+.resofkingdom .item-list .server {
+  background: url(../img/server.png) center 5px no-repeat;
+  background-size: 40px 40px;
+}
+
+
+.resofkingdom .item-list button:hover {
+  padding: 0;
+  background: #2d2c2c;
+}
+
+.resofkingdom .item-list button:hover span {
+  display: block;
+}
+
+.resofkingdom .item-list .selected {
+  background-color: #2d2c2c;
+}
+
+.resofkingdom .SideBar {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  background-color: #151515af;
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 20px;
+  border-radius: 15px;
+  width: 350px;
+  height: 45%;
+  min-height: 300px;
+}
+
+.resofkingdom .SideBar progress {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.resofkingdom .SideBar progress::-webkit-progress-bar {
+  background-color: #2d2c2c; /* Couleur de fond de la barre de progression pour les navigateurs WebKit (Chrome, Safari) */
+  border-radius: 15px;
+}
+
+.resofkingdom .SideBar progress::-webkit-progress-value {
+  background-color: #26fca5; /* Couleur de la barre de progression elle-même pour les navigateurs WebKit */
+  border-radius: 15px;
+}
+
+.resofkingdom .SideBar .data {
+  color: #33d453;
+}
+
+.resofkingdom .SideBar .resources {
+  color: #5794f7;
+}
+
+@keyframes countDown {
+  0%{
+    color: white;
+    transform: scale(1);
+  }
+  50%{
+    color: red;
+    transform: scale(1.1);
+  }
+  100%{
+    color: white;
+    transform: scale(1);
+  }
+}
+
+.resofkingdom .finalCountDown {
+  font-weight: 900;
+  animation: countDown 1s infinite;
+}
+
+.device-list {
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  background-color: #151515af;
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 20px;
+  border-radius: 15px;
+  width: fit-content;
+  width: 350px;
+  height: 30%;
+  min-height: 200px;
+}
+.device-list ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: left;
+  gap: 10px;
+  align-items: center;
+  overflow: auto;
+
+}
+
+.device-list li {
+  background-color: #2d2c2c;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+  width: 150px;
+  min-width: 200px;
+  color: white;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

@@ -1,0 +1,161 @@
+
+.tuto .background {
+    z-index: 500;
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 80%;
+}
+
+.tuto .window {
+    z-index: 500;
+    animation: appears .5s;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 40%;
+    left: 45%;
+    margin-top: -250px; /* moitié de la hauteur */
+    margin-left: -250px; /* moitié de la largeur */
+    padding-bottom: 30px;
+    align-items: center;
+    width: 700px    ;
+    height: 80%;
+    max-height: fit-content;
+    background-color: #151515b0;
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 15px;
+    overflow-y: auto;
+    
+}
+
+.tuto .window .close-button {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    position: absolute;
+    top: 0;
+}
+.tuto .window .close-button button {
+    margin: 10px 10px;
+    align-items:end;
+    background: #26fca5 url(../img/cross-icon.png) center center no-repeat;
+    background-size: 15px;
+    border: none;
+    border-radius: 15px;
+    color: #151515;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    transition: all .2s ease;
+}
+
+.tuto .window .close-button button:hover {
+    background-color: white;
+}
+
+.tuto .window h1 {
+    font-family: 'Pixelify Sans', sans-serif;
+    margin-top: 50px;
+    color: #26fca5;
+    text-transform: uppercase;
+    font-size: 50px;
+    padding: 0 25px;
+}
+
+
+
+
+.message-list{
+    list-style: none;
+}
+
+.big{
+    width: 850px;
+}
+
+.text-tuto{
+    margin-bottom: 40px;
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: center;
+}
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;   
+    }
+  }
+  
+
+.tuto-feuille2-act{
+animation: fadeIn 3s ease;
+position: absolute;
+top: 234px;
+margin-top: -12%;
+margin-bottom: -10%;
+transform: scale(0.7);
+}
+
+.tuto-feuille2-base{
+position: absolute;
+top:234px; 
+margin-top: -12%;
+margin-bottom: -10%;
+transform: scale(0.7);
+}
+
+.tuto-feuille{
+margin-top: -10%;
+margin-bottom: -8%;
+transform: scale(0.7);
+}
+
+
+
+.whereButton {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.requete-ex {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 235px;
+}
+
+.contenu-rangement {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 235px;
+  height: 200px
+}
+
+
+.visible {
+    opacity: 1 !important;
+  }
+  
+  .hidden {
+    opacity: 0 !important;
+  }
+
+  .journal-abs{
+    position: absolute;
+    top: 222px;
+  }
+
+.tuto .resofImg {
+  width: 20%;
+} 
+
+ 

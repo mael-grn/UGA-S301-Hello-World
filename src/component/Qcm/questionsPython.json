@@ -1,0 +1,53 @@
+[
+    {
+      "question": "Quelle commande est utilisée pour afficher le répertoire courant dans le shell ?",
+      "options": ["showdir", "ls", "cd", "pwd"],
+      "correctIndex": 3
+    },
+    {
+      "question": "Comment créer un nouveau répertoire avec la commande shell ?",
+      "options": ["newdir", "makefolder", "mkdir", "createfolder"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Quelle commande permet de lister les fichiers dans un répertoire ?",
+      "options": ["showfiles", "list", "dir", "ls"],
+      "correctIndex": 3
+    },
+    {
+      "question": "Comment supprimer un fichier avec le shell ?",
+      "options": ["remove", "rm", "delete", "del"],
+      "correctIndex": 1
+    },
+    {
+      "question": "Quelle commande est utilisée pour copier un fichier dans un autre répertoire ?",
+      "options": ["mv", "copy", "cp", "move"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Pour afficher le contenu d'un fichier texte dans le terminal, quelle commande doit-on utiliser ?",
+      "options": ["cat", "read", "show", "print"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Comment renommer un fichier avec le shell ?",
+      "options": ["rename", "mv", "ren", "move"],
+      "correctIndex": 1
+    },
+    {
+      "question": "Quelle commande permet de naviguer vers le répertoire personnel de l'utilisateur ?",
+      "options": ["home", "cd", "userdir", "homedir"],
+      "correctIndex": 1
+    },
+    {
+      "question": "Comment afficher l'aide d'une commande spécifique dans le shell ?",
+      "options": ["man", "help", "info", "usage"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Quelle commande est utilisée pour éditer un fichier texte dans le terminal ?",
+      "options": ["edit", "nano", "write", "open"],
+      "correctIndex": 1
+    }
+    
+]

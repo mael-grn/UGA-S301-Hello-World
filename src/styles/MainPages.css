@@ -1,0 +1,1139 @@
+
+/*Styles spécifiques à la page d'accueil--------------------------------------------------------------------------*/
+
+.HomePage {
+  background: #151515;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.HomePage .main-title {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.HomePage .main-title img {
+  width: 100vh;
+  margin: 0;
+
+}
+
+.HomePage .main-title p {
+  margin: 50px 0 0 60px;
+  width: 80vh;
+}
+
+.HomePage .main-title a {
+  margin: 10px 0 0 60px;
+}
+
+.HomePage .landing {
+  height: 85vh;
+  position: relative;
+}
+
+.HomePage .bgImage {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 45%;
+}
+
+.start-playing {
+    margin: 50px 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: fit-content;
+}
+
+.button-image {
+  position:absolute;
+  top: -15%;
+  left: -28%;
+  width: 70%;
+  height: 70%;
+  transform: rotate(-35deg); 
+}
+
+.button-jouer {
+  position: relative;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 30px;
+  color: #151515;
+  background-color: #26fca5;
+  background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+  border: none;
+  text-decoration: none;
+  padding: 15px 70px;
+  margin: 10px;
+  font-weight: bold;
+  border-radius: 15px;
+  transition: all .2s ease;
+  cursor: pointer;
+  
+}
+
+.button-jouer:hover  {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #26fca5;
+}
+
+ .button-jouer:active  {
+  transform: scale(0.9);
+}
+
+.HomePage .learning, .HomePage .squisine, .HomePage .resof {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50% 50vh  100px;
+  position: relative;
+  margin: 30vh 0 30vh 0;
+}
+
+.HomePage .learning img, .HomePage .squisine img, .HomePage .resof img {
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+  width: 40%;
+}
+
+@media only screen and (max-width: 767px) {
+  /* Styles spécifiques pour les téléphones */
+
+  .HomePage {
+    background: #151515;
+    height: 100vh;
+  }
+  
+  .HomePage .main-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .HomePage .main-title img {
+    width: 75%;
+    margin: 0;
+  
+  }
+  
+  .HomePage .main-title p {
+    margin: 50px 30px 0 30px;
+    width: fit-content;
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .HomePage .main-title a {
+    margin: 10px 0 0 0;
+  }
+  
+  .HomePage .landing {
+    height: 85%;
+    position: static;
+  }
+  
+  .HomePage .bgImage {
+    display: none;
+  }
+  
+  .start-playing {
+      margin: 50px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
+  
+  .HomePage .learning, .HomePage .squisine, .HomePage .resof {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10% 0 10%;
+    position: relative;
+    margin: 10% 0 10% 0;
+  }
+  
+  .HomePage .learning img, .HomePage .squisine img, .HomePage .resof img {
+    position: static;
+    width: 75%;
+  }
+}
+
+/*Styles spécifiques à la barre de nav--------------------------------------------------------------------------*/
+
+nav {
+  z-index: 500;
+  margin: 0;
+  position: fixed;
+  background-color: #151515af;
+  backdrop-filter: blur(15px);
+  top: 0;
+  left: 0;
+  height: 15vh;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav img {
+  width: 30vh;
+  object-fit: contain;
+  margin-left: 30px;
+}
+
+nav ul {
+  align-items: center;
+  margin: 0 20px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-around;
+}
+nav ul li {
+    align-items: center;
+  }
+  
+nav .userName {
+  font-size: 17px;
+  align-items: center;
+  margin: 0 10px;
+  padding: 10px 10px;
+}
+
+nav .home {
+  background: #26fca5 url(../img/home-icon.png) center center no-repeat;
+  background-size: 30px;
+  height: 20px;
+  width: 10px;
+}
+
+nav .avatar {
+  background: #26fca5 url(../img/avatar-icon.png) center center no-repeat;
+  background-size: 30px;
+  height: 20px;
+  width: 10px;
+}
+.menuBtn {
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+
+  
+  nav {
+    z-index: 500;
+    margin: 0;
+    position: fixed;
+    background-color: #151515af;
+    backdrop-filter: blur(15px);
+    
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s ease;
+  }
+  
+  nav img {
+    display: none;
+  }
+  
+  nav ul {
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+  }
+  nav ul li {
+      align-items: center;
+      width: 60%;
+      height: 10%;
+      margin: 10px 0;
+  }
+  
+  nav ul li .small-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background: none;
+    background-color: #26fca5;
+  }
+ 
+
+  nav .home::before {
+    content: "Retour menu";
+    font-size: 100%;
+  }
+  
+  nav .home {
+    background: #26fca5 url(../img/home-icon.png) center right 10%/ auto 100% no-repeat;    
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-size: 15%;
+    height: 10%;
+    width: 60%;
+  }
+
+  nav .avatar::before {
+    content: "Mon compte";
+    font-size: 100%;
+  }
+  
+  nav .avatar {
+    background: #26fca5 url(../img/avatar-icon.png) center right 10%/ auto 100% no-repeat; 
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-size: 15%;
+    height: 10%;
+    width: 60%;
+  }
+
+  
+
+  .showMenu {
+    transform: translate(0, calc(-100% + 50px));
+    background-color: transparent;
+    backdrop-filter: none;
+  }
+
+  nav .userName {
+    font-size: 15px;
+    color: #26fca5;
+    background-color: #2d2c2c;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    position: absolute;
+    bottom: 7.5px;
+    left: 7.5px;
+    height: 35px;
+    width: fit-content;
+    padding: 0 10px;
+    border-radius: 15px;
+    visibility: hidden;
+  }
+
+  .showMenu .userName {
+    visibility: visible;
+  }
+
+  .showMenu .menuBtn {
+    position: absolute;
+    bottom: 7.5px;
+    right: 7.5px;
+    display: block;
+    background: #26fca5 url(../img/hamburger-menu.png) center center no-repeat; 
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-size: 50%;
+    height: 35px;
+    width: 35px;
+    margin: 0;
+    padding: 0;
+  }
+  .showMenu .menuBtn::before {
+    content: "";
+  }
+
+  nav .menuBtn::before {
+    content: "Fermer";
+    font-size: 50%;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 20px;
+  }
+
+  nav .menuBtn {
+    background: #26fca5 url(../img/cross-icon.png) center right 10%/ auto 100% no-repeat; 
+    background-size: 20px;
+
+    position: absolute;
+    bottom: 20px;
+    right: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 35px;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+  }
+  nav .logout  {
+    position: absolute;
+    border-radius: 15px;
+    bottom: 20px;
+    left: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    height: 35px;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .showMenu .logout {
+    display: none;
+  }
+}
+
+/*Styles spécifiques à la page d'inscription et connexion--------------------------------------------------------------------------*/
+
+.Inscription main, .Connexion main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Inscription .top-info, .Connexion .top-info {
+  width: 100vh;
+}
+
+.Inscription .top-info .back, .Connexion .top-info .back {
+    border-radius: 15px;
+    border: none;
+    margin: 0 10px 0 0;
+    min-width: 40px;
+}
+
+.Inscription .button-profil {
+  animation: appears .4s;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 90%;
+  padding: 10vh;
+  gap: 10vh;
+  border-radius: 15px;
+  background-color: #2d2c2c;
+  
+}
+
+.Inscription .button-profil button {
+  font-family: 'Pixelify Sans', sans-serif;
+  animation: appears .6s;
+  border: none;
+  border-radius: 15px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50vh;
+  height: 30vh;
+  min-height: 150px;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+.Inscription .button-profil button:first-child {
+  background: #26fca5  url('../img/teacher-icon.png') center 40% no-repeat;
+  padding-top: 20%;
+
+  background-size: 35%;
+}
+
+.Inscription .button-profil button:last-child {
+  background: #26fca5 url('../img/student-icon.png') center 40% no-repeat;
+  padding-top: 20%;
+
+  background-size: 35%;
+}
+
+.Inscription .button-profil button:hover {
+  
+  background-color: white;
+  background-size: 0;
+  padding-top: 0;
+}
+
+
+@media only screen and (max-width: 767px) {
+
+  .Inscription main, .Connexion main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .Inscription .profileSelection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .Inscription .top-info, .Connexion .top-info {
+    width: 90%;
+    margin: 0 10%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  
+
+  .Inscription h1, .Connexion h1 {
+    font-size: 20px;
+  }
+  
+  .Inscription .button-profil {
+    animation: appears .4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: 5vh;
+    border-radius: 15px;
+    background-color: #2d2c2c;
+    padding: 15% 0;   
+    margin-top: 15%; 
+  }
+  
+  .Inscription .button-profil button {
+    animation: appears .6s;
+    border: none;
+    border-radius: 15px;
+    font-size: 150%;
+    font-weight: bold;
+    min-height: 0;
+    height: 10vh;
+    align-items: center ;
+    width: 80%;
+    margin: 0 10%;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .Inscription .button-profil button:first-child {
+    background: #26fca5;
+    padding-top: 0;
+    background-size: 0;
+  }
+  
+  .Inscription .button-profil button:last-child {
+    background: #26fca5;
+    padding-top: 0;
+  
+    background-size: 0;
+  }
+  
+  .Inscription .button-profil button:hover {
+    
+    background-color: white;
+    background-size: 0;
+    padding-top: 0;
+  }
+
+  .Inscription .inscriptionForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
+
+
+
+/*Styles spécifiques à la page menu d'eleve--------------------------------------------------------------------------*/
+
+.MenuEleve {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.MenuEleve p {
+  text-align: center;
+}
+
+.game-selection {
+  position: relative;
+}
+
+.MenuEleve .back {
+  background: #26fca5 url(../img/arrow-icon.png) center center no-repeat;
+  background-size: 20px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.MenuEleve .welcome {
+  margin-left: 50vh;
+}
+
+.MenuEleve .game-selection, .MenuEleve .game-mode {
+  position: relative;
+  animation: slide .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5vh 50vh;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+  padding: 50px;
+}
+
+.MenuEleve .button-profil-sel{
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .MenuEleve {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .MenuEleve p {
+    text-align: center;
+  }
+  
+  .game-selection {
+    position: relative;
+  }
+  
+  .MenuEleve .back {
+    background: #26fca5 url(../img/arrow-icon.png) center center no-repeat;
+    background-size: 20px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  .MenuEleve .welcome {
+    margin-left: 10%;
+  }
+  
+  .MenuEleve .game-selection, .MenuEleve .game-mode {
+    position: relative;
+    animation: slide .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh 10%;
+    background-color: #2d2c2c;
+    border-radius: 15px;
+    padding: 50px;
+  }
+
+  .MenuEleve .game-selection button {
+    padding: 10px 20px;
+  }
+  
+  .MenuEleve .button-profil-sel{
+    text-align: center;
+  }
+}
+
+/*Styles spécifiques à la page menu prof --------------------------------------------------------------------------*/
+
+.menuProf {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.menuProf .group-list ul {
+  margin: 5vh 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  height: fit-content;
+}
+
+.menuProf .group-list .button {
+  margin: 0;
+}
+
+.menuProf .group-list ul li {
+  margin: 10px;
+}
+
+
+.groupCreation {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.groupe .top-info {
+  display: flex;
+  align-items: center;
+}
+
+.menuProf p {
+  text-align: center;
+}
+
+
+
+.game-selection {
+  position: relative;
+}
+
+.eleveDetail .top-info {
+  display: flex;
+  align-items: center;
+}
+
+
+.menuProf .welcome {
+  margin-left: 50vh;
+}
+
+.menuProf .group-list  {
+  animation: slide .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5vh 50vh;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+  padding: 50px;
+}
+
+.eleveDetail .student {
+  animation: slide .3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 5vh;
+  flex-wrap: wrap;
+}
+
+.eleveDetail main {
+  display: flex;
+  flex-direction: column;
+  margin: 5vh;
+  
+}
+
+.eleveDetail .student .info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+  padding: 50px;
+  height: fit-content;
+}
+
+.eleveDetail .student .form {
+  justify-content: center;
+  gap: 30px;
+  height: 30vh;
+}
+
+
+.groupe main {
+  animation: slide .3s;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 100px;
+  margin: 5vh;
+}
+
+.groupe .student-list {
+  margin-top: 20px;
+}
+
+.groupe .student-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  gap: 20px;
+  margin: 0 20px 0 0;
+}
+
+.groupe .student-list ul li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.groupe .difficulte{
+  margin-left: 50px;
+}
+
+.groupCreation .top-info {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 767px) {
+
+  .menuProf{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 5%;
+  }
+
+  .menuProf .welcome {
+    margin: 0;
+  }
+
+  .menuProf .group-list  {
+    animation: slide .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #2d2c2c;
+    border-radius: 15px;
+    padding: 50px;
+  }
+
+  .menuProf .group-list .button {
+    padding: 10px 20px;
+  }
+
+  .groupCreation {
+    margin: 5%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 0  ;
+    align-items: center;
+    position: relative;
+  }
+
+  .groupCreation .top-info {
+    width: 90%;
+    padding: 0 5%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .groupCreation .top-info .back {
+    background: #26fca5 url(../img/arrow-icon.png) center center no-repeat;
+    background-size: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0 20px 0 0;
+  }
+
+  .groupCreation .form {
+    margin: 5% 0;
+  }
+
+  .createGroupForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .groupe main {
+    animation: slide .3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 5%;
+    gap: 0;
+  }
+
+  .groupe .back, .eleveDetail .back {
+    background: #26fca5 url(../img/arrow-icon.png) center center no-repeat;
+    background-size: 20px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0 20px 0 0;
+  }
+
+  .groupe  .top-info, .eleveDetail .top-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .groupe  h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .groupe .form {
+    margin: 5% 0;
+    padding: 5%;
+  }
+
+  .groupe .form h1 {
+    margin: 20px 0;
+  }
+
+  .groupe .form input{
+    width: 50%;
+    margin:  0 5%;
+  }
+
+  .groupe .addStudent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .groupe .student-list {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .groupe .student-list ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    
+  }
+
+  .groupe .student-list ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #151515;
+    padding: 5%;
+    border-radius: 15px;
+    width: 90%;
+  }
+
+  .groupe h1 {
+    margin: 20px 0;
+  }
+
+  .groupe .student-list:nth-child(2) ul li {
+    background-color: #2d2c2c;
+  }
+
+  .eleveDetail main {
+    margin: 0 5% 5% 5%;
+  }
+
+  .eleveDetail .student {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .eleveDetail .student .info {
+    padding: 10%;
+    width: 80%;
+  }
+
+  .eleveDetail .student .form {
+    margin: 0;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .eleveDetail .student .form .button {
+    font-size: 30px;
+  }
+}
+
+/*--------------------------------------------------------------------------------------------autres elements globaux*/
+
+.space{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 50px;
+  width: 50px;
+  background: #26fca5 url(../img/up-icon.png) center center no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 25px;
+  transition: all 0.2s ease;
+  transform: scale(0);
+}
+
+.back-to-top:hover {
+  transform: scale(1.1);
+}
+
+.back-to-top:active {
+  transform: scale(0.9);
+}
+
+.back-visible{
+  transform: scale(1);
+}
+
+.unauthorized main, .notFound main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  width: 100%;
+  background: url(../img/unauthorized.svg) center top no-repeat;
+  background-size: 30%;
+}
+
+.notFound main {
+  background: url(../img/nopage.svg) center top no-repeat;
+  background-size: 30%;
+
+}
+
+.unauthorized h1, .notFound h1 {
+  color: white;
+  padding-top: 20%;
+  font-size: 40px;
+}
+
+.credits, .confidentiality {
+  padding: 10vh;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.credits h1, .confidentiality h1 {
+  font-size: 100px;
+}
+
+.credits h2, .confidentiality h2 {
+  font-size: 30px;
+  color: #26fca5;
+}
+
+.credits div, .confidentiality div {
+  padding: 10vh;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+}
+
+.credits ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.credits ul li {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  align-items: center;
+  width: 100px;
+}
+
+.credits ul li img {
+  width: 100px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .unauthorized main, .notFound main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+    background: url(../img/unauthorized.svg) center top no-repeat;
+    background-size: 50%;
+  }
+  
+  .notFound main {
+    background: url(../img/nopage.svg) center top no-repeat;
+    background-size: 50%;
+  }
+  
+  .unauthorized h1, .notFound h1 {
+    color: white;
+    text-align: center;
+    padding-top: 20%;
+    font-size: 20px;
+    padding: 0 30px;
+  }
+  
+  .credits, .confidentiality {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 50px;
+    padding: 5%;
+  }
+  
+  .credits h1, .confidentiality h1 {
+    font-size: 30px;
+    width: 100%;
+  }
+  
+  .credits h2, .confidentiality h2 {
+    font-size: 20px;
+    color: #26fca5;
+  }
+
+  .credits p, .confidentiality p {
+    font-size: 15px;
+  }
+  
+  .credits div, .confidentiality div {
+    padding: 10vh;
+    background-color: #2d2c2c;
+    border-radius: 15px;
+  }
+  
+  .credits ul {
+    display: none;
+  }
+
+  .confidentiality ul {
+    padding: 0;
+  }
+}

@@ -1,0 +1,181 @@
+
+@keyframes bubble {
+    from {
+        transform: translate(250px, 100px) scale(0) ;
+    } to {
+        transform: translate(0, 0) scale(1) ;
+    }
+}
+
+@keyframes informatico-name-slide {
+    from {
+        transform: translate(150px, 0) scale(0) ;
+    } to {
+        transform: translate(0, 0) scale(1) ;
+    }
+}
+
+@keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-2px) rotate(-1deg);
+    }
+    50% {
+      transform: translateX(2px) rotate(1deg);
+    }
+    75% {
+      transform: translateX(-2px) rotate(-1deg);
+    }
+    100% {
+      transform: translateX(2px) rotate(1deg);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: scale(1.05);
+    }
+    25% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    75% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+.Informatico {
+    animation: slide .5s;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.closing-info {
+    animation: bubble .6s reverse;
+}
+
+.Informatico .profile {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 30px;
+}
+
+.Informatico .vibrate {
+    animation: bounce .5s infinite;
+
+}
+
+.Informatico .profile h2 {
+    animation: informatico-name-slide .7s;
+}
+
+.Informatico .picture {
+    background: white url('../img/informatico/normal.png') center center no-repeat;
+    background-size: 50px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    margin-right: 30px;
+    border: none;
+    cursor: pointer;
+} 
+
+
+
+.Informatico .message {
+    animation: bubble .7s;
+    background: white;
+    margin: 0 50px 30px 0;
+    padding: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 500px;
+}
+
+
+
+
+.Informatico .message p {
+
+    color: #151515;
+}
+
+
+.Informatico .next {
+    margin: 0 0 0 80%;
+}
+
+.Informatico .Resof {
+    background: white url('../img/informatico/crown.png') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .SQuisine {
+    background: white url('../img/informatico/chef.png') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .ShellHunt {
+    background: white url('../img/informatico/detective.png') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .TurtleGame {
+    background: white url('../img/informatico/TurtleGame.png') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .picture-talking {
+    background: white url('../img/informatico/normal.gif') center center no-repeat;
+    background-size: 50px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    margin-right: 30px;
+    border: none;
+}
+
+.Informatico .Resof-talking {
+    background: white url('../img/informatico/crown.gif') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .SQuisine-talking {
+    background: white url('../img/informatico/chef.gif') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .ShellHunt-talking {
+    background: white url('../img/informatico/detective.gif') center center no-repeat;
+    background-size: 50px;
+}
+
+.Informatico .TurtleGame-talking {
+    background: white url('../img/informatico/TurtleGame.gif') center center no-repeat;
+    background-size: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+    /* Styles spécifiques pour les téléphones */
+    .Informatico {
+        display: none;
+    }
+}

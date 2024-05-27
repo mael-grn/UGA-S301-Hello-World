@@ -1,0 +1,392 @@
+@keyframes appears {
+  from {
+      transform: scale(0.3);
+  }
+  to {
+      transform: scale(1);
+  }
+}
+
+
+.boxes-container {
+  margin-top: -5%;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%; 
+  transform: scale(0.75);
+}
+
+
+.box-white {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: #151515;
+  /* Ajoutez les propriétés suivantes pour centrer horizontalement */
+  margin: 0 auto;
+}
+
+
+.content-button {
+  margin: 5%;
+  top: 50px;
+  left: 50px;
+  width: 90%;
+  height: fit-content;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+}
+
+.content-button-droite {
+  margin: 5%;
+  top: 50px;
+  left: 50px;
+  width: 110%;
+  height: 420px;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+  display: flex;
+}
+
+
+
+
+
+.action-button {
+  margin-left: 5%;
+  margin-right: 5%;
+  bottom: 30px  ;
+  left: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  
+}
+.action-button button, .error-circle {
+  font-size: 20px;
+  font-weight: bold;
+  width: 150px;
+  height: 65px;
+  padding-bottom: 5px;
+
+  border: none;
+  cursor: pointer;
+
+  color: #151515;
+  border-radius: 15px;
+
+  transition: all .2s ease;
+}
+
+
+.validate-button {
+  background-color: rgb(61, 234, 61);
+}
+
+.validate-button:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px rgb(61, 234, 61);
+}
+
+.journal-button {
+  background-color: rgb(48, 48, 251);
+  position: relative;
+}
+
+.journal-button:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px rgb(48, 48, 251);
+}
+
+.erase-button {
+  background-color: rgb(224, 78, 78);
+}
+
+.erase-button:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px rgb(224, 78, 78);
+}
+
+.topmenu {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+
+}
+
+
+
+
+.topmenu button {
+  background: none;
+  color: white;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+
+  transition: all .2s ease;
+}
+
+.topmenu button:hover {
+  letter-spacing: 2px;  
+}
+
+
+
+
+
+
+
+.requete {
+  margin: 5%;
+  margin-top: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  top: 50px;
+  left: 50px;
+  width: 100%;
+  min-height: 60px;
+  height: fit-content;
+  background-color: #2d2c2c;
+  border-radius: 15px;
+  display: flex;
+  overflow: hidden;
+}
+
+
+
+.requete ul {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+.requete-list {
+  color: white;
+  padding: 5px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  background-color: #26fca5; /* Couleur par défaut */
+  padding: 15px 20px;
+  margin-left: 20px;
+  border-radius: 15px;
+  color: #151515;
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 10px;
+}
+
+.requete-list.validate-button {
+  background-color: rgb(61, 234, 61); /* Couleur pour les éléments corrects */
+}
+
+.requete-list.erase-button {
+  background-color: rgb(224, 78, 78); /* Couleur pour les éléments incorrects */
+}
+.requete ul li {
+  background-color: #26fca5;
+  padding: 15px 20px;
+  margin-left: 20px;
+  border-radius: 15px;
+  color: #151515;
+
+  /* Ajoutez ces propriétés pour ajuster la taille réelle des éléments */
+  width: fit-content;
+  height: fit-content;
+  margin-bottom: 10px; /* Ajoute un espace entre les éléments */
+}
+
+
+
+
+.App .score-container {
+  font-family: 'Montserrat', sans-serif;
+  color: #26fca5;
+  text-align: start;
+  margin-top: 3%;
+  margin-left: 15%;
+  font-size: 18px;
+}
+
+.clignote {
+  color: white; /* Couleur de base */
+  animation: clignoter 0.5s infinite alternate;
+}
+
+@keyframes clignoter {
+  from {
+    color: white; /* Couleur de départ (blanc) */
+  }
+  to {
+    color: red; /* Couleur finale (rouge) */
+  }
+}
+
+
+.correction-image{
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.error-circle {
+  position: absolute;
+  top: -10px; /* Ajustez la valeur pour le positionner correctement en haut */
+  right: -10px; /* Ajustez la valeur pour le positionner correctement à droite */
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+
+.game-button {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 25px;
+  color: #151515;
+  background-color: #26fca5;
+  height: auto;
+  width: auto;
+  margin: 20px;
+  background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+  border: none;
+  text-decoration: none;
+  padding: 25px 70px;
+  margin:20px;
+  font-weight: bold;
+  border-radius: 15px;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+
+
+.game-button:hover   {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px #26fca5;
+}
+
+ .game-button:active, .small-game-button:active, .requete-list.validate-button:active, .requete-list.erase-button:active {
+  transform: scale(0.9);
+}
+
+.small-game-button{
+  background-image: radial-gradient(93% 87% at 87% 89%, rgba(0, 0, 0, 0.23) 0%, transparent 86.18%), radial-gradient(66% 66% at 26% 20%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 69.79%, rgba(255, 255, 255, 0) 100%);
+  font-family: 'Pixelify Sans', sans-serif;
+
+}
+
+.small-game-button:hover,.requete-list.validate-button:hover,.requete-list.erase-button:hover   {
+  transform: scale(1.05);
+}
+
+.image-food{
+  margin-left : 10%;
+}
+
+.recette h2 {
+  color: black;
+  font-size: 130%;
+}
+
+
+.recette ul {
+  display: flex;
+  align-items: center;
+}
+
+.recette ul p {
+  margin-right: 10px;
+}
+
+.recette-box {
+  position: relative;
+  margin: 5%;
+  margin-top: 50px;
+  margin-left: 50px;
+  height: 100%;
+  max-width: 25%; /* La largeur maximale ne dépassera pas la largeur de l'écran */
+  background-color: transparent;
+}
+
+.feuille-recette {
+  position: absolute;
+  z-index: 0;
+  width: 300px;
+  height: 350px;
+}
+
+.recette {
+  font-family: 'Shadows Into Light';
+  color: black;
+  position: relative;
+  padding-left: 50px;
+  padding-top: 30px;
+  margin-top: -10px;
+  font-size: 100%;
+  z-index: 500;
+  max-width: 250px;
+  max-height: 50px;
+}
+
+.etapes, .titre-recette {
+  z-index: 500;
+}
+
+.etape-valide {
+  color: #00ff00; /* Couleur verte pour les étapes validées */
+  text-shadow:
+  0 0 7px #fff,
+  0 0 10px #fff,
+  0 0 21px #fff;
+}
+
+.plan-travail{
+  margin: 50px;
+  width: 400px;
+}
+
+.plan-box {
+  position: relative;
+  margin: 5%;
+  margin-top: 50px;
+  margin-left: 20px;
+  background-color: transparent;
+  overflow: hidden; /* Ajoutez cette propriété pour masquer le contenu dépassant */
+}
+
+.food-plan{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(2.75);
+}
+
+.image-rangement{
+  position: relative;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.image-rangement-conteneur{
+  position: absolute;
+  transform: scale(2.5);
+  top: 75px;
+  left: 550px;
+}
