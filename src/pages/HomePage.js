@@ -49,6 +49,10 @@ const HomePage = () => {
     setShowPopup(true);
   }
 
+  useEffect(() => {
+    handleShowPopup("Service non disponible", "Nous regrettons de vous informer que ce projet n'est plus maintenu et que les serveurs sont actuellement hors service. Merci de votre compréhension.");
+  }, []);
+
     return (
         <div className='HomePage'>
         <header>
