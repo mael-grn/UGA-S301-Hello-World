@@ -21,14 +21,13 @@ export const DataContext = createContext();
    * @param {*} teacher true si l'utilisateur est un professeur
    * @param {*} isConnected true s'il l'utilisateur s'est correctement loggé
    */
-export const setUserData = (userName, name, surName, group, teacher, isConnected, token) => {
+export const setUserData = (userName, name, surName, group, teacher, isConnected) => {
   localStorage.setItem('userName', userName);
   localStorage.setItem('name', name);
   localStorage.setItem('surName', surName);
   localStorage.setItem('group', group);
   localStorage.setItem('teacher', teacher);
   localStorage.setItem('isConnected', isConnected);
-  localStorage.setItem('authToken', token);
   window.location.replace('/');
 }
 
@@ -42,7 +41,6 @@ const logout = () => {
   localStorage.removeItem('teacher');
   localStorage.removeItem('isConnected');
   localStorage.removeItem('qcm')
-  localStorage.removeItem('authToken')
   window.location.replace('/');
 };
 
@@ -72,21 +70,10 @@ const setGroupeData = (idGroupe,niveau,dateCreation,professeur) => {
    * @returns 
    */
 export const register = (prenom, nom, dateNaiss, teacher, password,accordParent) => {
-  console.log(process.env.REACT_APP_DB_URL);
   return new Promise((resolve, reject) => {
-
-    axios.post(`${process.env.REACT_APP_DB_URL}/register`, {prenom:prenom, nom:nom,  password:password, dateNaiss:dateNaiss, teacher:teacher,accordParent:accordParent})
-    .then(response => {
-      const { message, login, token } = response.data;
-      resolve(true);
-      setUserData(login, prenom, nom, null, teacher, true, token);
-    })
-    .catch(error => {
-      reject(error);
-    });
-
+    resolve(true);
+    setUserData(login, prenom, nom, null, teacher, true);
   });
-
 };
 
 /**
@@ -95,12 +82,6 @@ export const register = (prenom, nom, dateNaiss, teacher, password,accordParent)
    * @param {*} sentence 
    */
 export const addInformaticoSentence = (sentence) => {
-  const userName = localStorage.getItem('userName');
-  axios.post(`${process.env.REACT_APP_DB_URL}/addSentenceInformatico`, {login:userName, sentence:sentence}).then(response => {
-    
-  }).catch(error => {
-    console.log(error);
-  });
 }
 
 /**
@@ -110,19 +91,7 @@ export const addInformaticoSentence = (sentence) => {
  */
 export const checkInformaticoSentence = (sentence) => {
   return new Promise((resolve, reject) => {
-    const userName = localStorage.getItem('userName');
-    axios.get(`${process.env.REACT_APP_DB_URL}/getSentencesInformatico?login=${userName}`)
-      .then(response => {
-        const sentences = response.data.sentences.split(',');
-        resolve(!sentences.includes(sentence));
-      })
-      .catch(error => {
-        if (error.response && error.response.status === 404) {
-          resolve(true);
-        } else {
-          reject(error); // Vous devriez rejeter l'erreur ici pour la capturer en dehors
-        }
-      });
+    resolve(true);
   });
 };
 
@@ -141,36 +110,17 @@ export const updateGroup = (newGroup) => {
  * @returns 
  */
 export const login = (userName, password) => {
-  
-  //requete vers la base de données pour chercher l'utilisateur. Appel la fonction login coté serveur
-
-  //return "Le serveur est indisponible pour le moment";
 
   return new Promise((resolve, reject) => {
-    const teacher = JSON.parse( localStorage.getItem('teacher'));
-    console.log(`${process.env.REACT_APP_DB_URL}/user?login=${userName}&password=${password}&teacher=${teacher}`);
-    axios.get(`${process.env.REACT_APP_DB_URL}/user?login=${userName}&password=${password}&teacher=${teacher}`).then(response => {
-      setUserData(response.data.login, response.data.prenom, response.data.nom, response.data.group, response.data.teacher, true, response.data.token);
-      resolve(true);
-    }).catch(error => {
-      reject(error);
-    });
+    setUserData(userName, "John", "Doe", "Terminal", false, true);
+    resolve(true);
   });
 }
 
 export const getGroupesProf = () => {
-  //requete vers la base de données pour chercher l'utilisateur. Appel la fonction groupes coté serv
   return new Promise((resolve, reject) => {
-  const userName = localStorage.getItem('userName');
-  axios.get(`${process.env.REACT_APP_DB_URL}/getGroupesDuProf?prof=${userName}`)
-    .then(response => {
-      resolve(response.data.groupes);
-    })
-    .catch(error => {
-      reject(error);
-    });
+    resolve(null);
   });
-    // return "Le serveur est indisponible pour le moment";
 }
 
 
@@ -182,65 +132,19 @@ export const getGroupesProf = () => {
 export const majQcm  =(game,note) =>{
   const userName = localStorage.getItem('userName');
   let qcmListe = [];
-
+  localStorage.setItem('qcm_' + game, note);
   // Utiliser une promesse pour gérer de manière asynchrone la réponse axios
   const fetchData = () => {
     return new Promise((resolve, reject) => {
-      
-      axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneQcm?login=${userName}&game=${game}`)
-        .then(response => {
-          const { message, qcm } = response.data;
-          if (message === 'success') {
-            qcmListe = qcm.split(',');
-            if (qcmListe[qcmListe.length - 1] === '') {
-              qcmListe.pop(); // Retire le dernier élément s'il est vide
-            }
-            resolve(qcmListe); // Résoudre la promesse avec qcmListe
-          } else {
-            reject(new Error('Erreur lors de la récupération des données'));
-          }
-        })
-        .catch(error => {
-          console.error('Erreur lors de l\'ajout de QCM:', error);
-          reject(error);
-        });
+      resolve(null);
     });
   };
   
   // Utiliser fetchData
   fetchData()
     .then(result => {
-      // Maintenant, vous pouvez utiliser qcmListe en dehors du bloc axios.get
-      if(game==='SQuisine'){
-          result[0]=note;
-        }
-      else if(game==='resofkingdom'){
-        result[1]=note;
-      }
-      else if(game ==='shellHunt'){
-        result[2]=note;
-      }
-      else if(game === 'TurtleGame'){
-        result[3]=note;
-      }
-      const qcmNew=result.join(',');
-      
-      axios.post(`${process.env.REACT_APP_DB_URL}/majQcm?login=${userName}&qcmNew=${qcmNew}`)      
-      .then(response => {
-        const { message} = response.data;
-        if (message === 'success') {
-          return true;
-        } else {
-          return false;
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors de l\'ajout de QCM:', error);
-      });
+      return true;
     })
-    .catch(error => {
-      console.error('Une erreur s\'est produite:', error);
-    });
 }
 
 
@@ -250,37 +154,8 @@ export const majQcm  =(game,note) =>{
  * @returns true si le joueur à deja fait le qcm
  */
 export const qcmDone = (game) => {
-  const userName = localStorage.getItem('userName');
   return new Promise((resolve, reject) => {
-    axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneQcm?login=${userName}&game=${game}`)
-      .then(response => {
-        const qcmListe = response.data.qcm.split(',');
-        if (qcmListe[qcmListe.length - 1] === '') {
-          qcmListe.pop(); // Retire le dernier élément s'il est vide
-        } 
-        if (game==='SQuisine' && qcmListe[0]!=='false'){
-          resolve(qcmListe[0]);
-        }
-        else if (game==='SQuisineSolo' && qcmListe[0]!=='false'){
-          resolve(qcmListe[0]);
-        }
-        else if(game==='Resofkingdom' && qcmListe[1]!=='false'){
-          resolve(qcmListe[1]);
-        }
-        else if(game==='ShellHunt' && qcmListe[2]!=='false'){
-          resolve(qcmListe[2]);
-        }
-        else if(game==='TurtleGame' && qcmListe[3]!=='false'){
-          resolve(qcmListe[3]);
-        }
-        else{
-          resolve(false);
-        }
-        
-      })
-      .catch(error => {
-        reject(error);
-      });
+    resolve(true);
   });
 };
 
@@ -298,49 +173,9 @@ export const majTuto =(game,statut) =>{
   const fetchData = () => {
     const userName = localStorage.getItem('userName');
     return new Promise((resolve, reject) => {
-      axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneTuto?login=${userName}&game=${game}`)
-      .then(response => {
-          const { tuto } = response.data;
-          
-          tutoListe = tuto.split(',');
-          if (tutoListe[tutoListe.length - 1] === '') {
-            tutoListe.pop(); // Retire le dernier élément s'il est vide
-          }
-          resolve(tutoListe); // Résoudre la promesse avec qcmListe
-        
-        })
-        .catch(error => {
-          reject(error);
-        });
+      resolve(null);
     });
   };
-  
-  // Utiliser fetchData
-  fetchData()
-    .then(result => {
-      // Maintenant, vous pouvez utiliser qcmListe en dehors du bloc axios.get
-      if(game==='SQuisine'){
-          result[0]=statut;
-        }
-      else if(game==='Resof'){
-        result[1]=statut;
-      }
-      else if(game ==='shellHunt'){
-        result[2]=statut;
-      }
-      const tutoNew=result.join(',');
-      const userName = localStorage.getItem('userName');
-      axios.post(`${process.env.REACT_APP_DB_URL}/majTuto?login=${userName}&tutoNew=${tutoNew}`)      
-      .then(response => {
-        return true;
-      })
-      .catch(error => {
-        return false;
-      });
-    })
-    .catch(error => {
-      return false;
-    });
 }
 
 
@@ -352,30 +187,7 @@ export const majTuto =(game,statut) =>{
 export const getTuto = (game) => {
   const userName = localStorage.getItem('userName');
   return new Promise((resolve, reject) => {
-    axios.get(`${process.env.REACT_APP_DB_URL}/hasDoneTuto?login=${userName}&game=${game}`)
-      .then(response => {
-        const { message, tuto } = response.data;
-          const tutoListe = response.data.tuto.split(',');
-          if (tutoListe[tutoListe.length - 1] === '') {
-            tutoListe.pop(); // Retire le dernier élément s'il est vide
-          } 
-          if (game==='SQuisine' && tutoListe[0]!=='false'){
-            resolve(tutoListe[0]);
-          }
-          else if(game==='Resof' && tutoListe[1]!=='false'){
-            resolve(tutoListe[1]);
-          }
-          else if(game==='ShellHunt' && tutoListe[2]!=='false'){
-            resolve(tutoListe[2]);
-          }
-          else{
-            resolve(false);
-          }
-        
-      })
-      .catch(error => {
-        reject(error);
-      });
+    resolve(false);
   });
 };
 
@@ -386,14 +198,7 @@ export const getTuto = (game) => {
  */
 export const getDetails = (userName) => {
   return new Promise((resolve,reject) => {
-  axios.get(`${process.env.REACT_APP_DB_URL}/getEleveDetails?login=${userName}`)
-  .then(response => {
-      
-      resolve(response);
-    })
-    .catch(error => {
-      reject(error);
-    });
+  resolve(null);
   })
   //requete vers la base de données pour chercher l'utilisateur. Appel la fonction groupes coté serv
 }
@@ -405,14 +210,7 @@ export const getDetails = (userName) => {
  */
 export const getGroupeEleve = (userName) => {
   return new Promise((resolve,reject) => {
-    axios.get(`${process.env.REACT_APP_DB_URL}/getGroupesDuProf?prof=${userName}`)
-    .then(response => {
-      resolve(response);
-
-    })
-    .catch(error => {
-      reject(error)
-    });
+    resolve("Terminal");
   })
 }
 
@@ -424,14 +222,7 @@ export const getGroupeEleve = (userName) => {
  */
 export const setLogin = (username, newUserName) => {
   return new Promise((resolve,reject) => {
-    axios.post(`${process.env.REACT_APP_DB_URL}/updateEleveLogin`, {
-      currentLogin: username,
-      newLogin: newUserName,
-    }).then(response => {
-      resolve(true);
-    }).catch(error => {
-      reject(error)
-    });
+    resolve(true);
 });
 }
 
@@ -443,11 +234,7 @@ export const setLogin = (username, newUserName) => {
 */
 export const joinGroupe = (userName,nomGroupe)=>{
 return new Promise((resolve,reject) => {
-axios.post(`${process.env.REACT_APP_DB_URL}/addStudentGroup`, { login:userName, groupe:nomGroupe, }).then(response => {
   resolve(true);
-}).catch(error => {
-  reject(error);
-});
 });
 }
 
@@ -460,11 +247,7 @@ axios.post(`${process.env.REACT_APP_DB_URL}/addStudentGroup`, { login:userName, 
 export const addGroup = (nomGroupe)=>{
   const userName = localStorage.getItem('userName');
 return new Promise((resolve,reject) => {
-axios.post(`${process.env.REACT_APP_DB_URL}/addGroup`, { professeur:userName, id:nomGroupe, }).then(response => {
-  resolve(response);
-}).catch(error => {
-  reject(error);
-});
+resolve(null);
 });
 }
 
@@ -474,25 +257,13 @@ axios.post(`${process.env.REACT_APP_DB_URL}/addGroup`, { professeur:userName, id
 */
 export const getEleveGroupe = (groupe)=>{
 return new Promise((resolve,reject) => {
-  axios.get(`${process.env.REACT_APP_DB_URL}/getElevesDuGroupe?groupe=${groupe}`)
-  .then(response => {
-    resolve(response);
-  })
-  .catch(error => {
-    reject(error);
-  });
+resolve(null);
 })
 }
 
 export const getElevesSansGroupe = ()=>{
 return new Promise((resolve,reject) => {
-  axios.get(`${process.env.REACT_APP_DB_URL}/getElevesSansGroupe`)
-  .then(response => {
-    resolve(response);
-  })
-  .catch(error => {
-    reject(error);
-  });
+  resolve(null);
 })
 }
 
@@ -500,44 +271,14 @@ export const recherchePartie = () => {
   const userName = localStorage.getItem('userName');
   const group = localStorage.getItem('group');
 return new Promise((resolve, reject) => {
-  axios.post(`${process.env.REACT_APP_DB_URL}/recherchePartie`, {
-    login: userName,
-    groupeId: group,
-  })
-  .then(response => {
-    const { message, data } = response.data;
-    if (message === 'success') {
-      resolve(data);
-    } else if(message=== 'Nombre maximum de tentatives atteint'){
-      window.location.replace('/');
-    }
-    else {
-      reject(message);
-    }
-  })
-  .catch(error => {
-    reject(error);
-  });
+  reject("Le serveur est hors ligne");
 });
 };
 
 export const deleteGames = () => {
   const userName = localStorage.getItem('userName');
 return new Promise((resolve, reject) => {
-  axios.post(`${process.env.REACT_APP_DB_URL}/clearGames`, {
-    login: userName,
-  })
-  .then(response => {
-    const { message, data } = response.data;
-    if (message === 'success') {
-      resolve(data);
-    } else {
-      reject(message);
-    }
-  })
-  .catch(error => {
-    reject(error);
-  });
+  resolve(null);
 });
 };
 
@@ -545,70 +286,33 @@ export const deleteUserAcc = () => {
   const userName = localStorage.getItem('userName');
   const teacher = JSON.parse( localStorage.getItem('teacher'));
 return new Promise((resolve,reject) => {
-  axios.post(`${process.env.REACT_APP_DB_URL}/deleteUser`, {
-    login: userName,
-    teacher: teacher
-  })
-  .then(response => {
-    logout();
-    resolve(response);
-  }).catch(error => {
-    reject(error);
-  });
+  resolve(null);
 });
 };
 
 export const getCoop = ()=>{
   const userName = localStorage.getItem('userName');
 return new Promise((resolve,reject) => {
-  axios.get(`${process.env.REACT_APP_DB_URL}/getCoequipier?login=${userName}`)
-  .then(response => {
-    resolve(response);
-  })
-  .catch(error => {
-    reject(error);
-  });
+  reject("Le serveur est hors ligne");
 })
 }
 
 export const getTourCoop = (coop)=>{
 return new Promise((resolve,reject) => {
-  axios.get(`${process.env.REACT_APP_DB_URL}/getTour?coop=${coop}`)
-  .then(response => {
-    resolve(response);
-  })
-  .catch(error => {
-    reject(error);
-  });
+  reject("Le serveur est hors ligne");
 })
 }
 
 export const majTourSelf = (coequipier) => {
   const userName = localStorage.getItem('userName');
 return new Promise((resolve,reject) => {
-  axios.post(`${process.env.REACT_APP_DB_URL}/majTour`, {
-    login: userName, 
-    coeq: coequipier
-  })
-  .then(response => {
-    resolve(response);
-  }).catch(error => {
-    reject(error);
-  });
+  reject("Le serveur est hors ligne");
 });
 };
 
 export const chgmtEtatCoeq = (coequipier,fin) => {
 return new Promise((resolve,reject) => {
-  axios.post(`${process.env.REACT_APP_DB_URL}/finJeu`, {
-    login: coequipier, 
-    typefin: fin
-  })
-  .then(response => {
-    resolve(response);
-  }).catch(error => {
-    reject(error);
-  });
+  reject("Le serveur est hors ligne");
 });
 };
 
@@ -628,58 +332,10 @@ export const DataProvider = ({ children }) => {
   const [niveau, setNiveau] = useState(localStorage.getItem('niveau') || null);
   const [dateCreation, setDateCreation] = useState(localStorage.getItem('dateCreation') || null);
   const [professeur, setProfesseur] = useState(localStorage.getItem('professeur') || null);
-
-  /**
-   * Verification de la session de l'utilisateur à l'aide d'un token. Sera appelé à chaque fois que des données sensibles sont changées
-   */
-  useEffect(() => {
-    const token = localStorage.getItem('authToken') || null;
-  
-    // Créer une source d'annulation  
-    if (token !== null && isConnected) {
-      axios.get(`${process.env.REACT_APP_DB_URL}/checkToken?token=${token}`).then(response => {
-        if (!isConnected) {
-          setIsConnected(true);
-        }
-      }).catch(error => {
-        console.log(error);
-      });
-    } else if (token === null && isConnected) {
-      // Déconnectez l'utilisateur si le token est null et isConnected est vrai
-      logout();
-    }
-  
-  }, [isConnected, logout, teacher]);
  
   const getDifficulte = (game) => {
     return new Promise((resolve, reject) => {
-      axios.get(`${process.env.REACT_APP_DB_URL}/getDifficulteGame?group=${group}&game=${game}`)
-        .then(response => {
-          const { message, difficulte } = response.data;
-            const difficulteListe = response.data.difficulte.split(',');
-            if (difficulteListe[difficulteListe.length - 1] === '') {
-              difficulteListe.pop(); // Retire le dernier élément s'il est vide
-            } 
-            if (game==='SQuisine'){
-              resolve(difficulteListe[0]);
-            }
-            else if(game==='Resof'){
-              resolve(difficulteListe[1]);
-            }
-            else if(game==='ShellHunt'){
-              resolve(difficulteListe[2]);
-            }
-            else if(game==='TurtleGame'){
-              resolve(difficulteListe[3]);
-            }
-            else{
-              resolve(false);
-            }
-          
-        })
-        .catch(error => {
-          reject(error);
-        });
+      resolve(false);
     });
   };
   
@@ -688,68 +344,18 @@ export const DataProvider = ({ children }) => {
      * correspond à mettre l'attribut qcm sur true, pour dire que l'utilisateur à effectué le qcm pour un jours
      * @param {*} game 
      */
-   const majDifficulte  =(game,difficulte) =>{
-        
-    let difficulteListe = [];
-  
-    // Utiliser une promesse pour gérer de manière asynchrone la réponse axios
-    const fetchData = () => {
-      return new Promise((resolve, reject) => {
-        axios.get(`${process.env.REACT_APP_DB_URL}/getDifficulteGame?group=${group}&game=${game}`)
-          .then(response => {
-            const { message, difficulte } = response.data;
-            if (message === 'success') {
-              difficulteListe = difficulte.split(',');
-              if (difficulteListe[difficulteListe.length - 1] === '') {
-                difficulteListe.pop(); // Retire le dernier élément s'il est vide
-              }
-              resolve(difficulteListe); // Résoudre la promesse avec difficulteListe
-            } else {
-              reject(new Error('Erreur lors de la récupération des données'));
-            }
-          })
-          .catch(error => {
-            console.error('Erreur lors de la maj de difficulte:', error);
-            reject(error);
-          });
-      });
-    };
-    
-    // Utiliser fetchData
-    fetchData()
-      .then(result => {
-        // Maintenant, vous pouvez utiliser difficulteListe en dehors du bloc axios.get
-        if(game==='SQuisine'){
-            result[0]=difficulte;
-          }
-        else if(game==='Resof'){
-          result[1]=difficulte;
-        }
-        else if(game ==='shellHunt'){
-          result[2]=difficulte;
-        }
-        else if(game === 'TurtleGame'){
-          result[3]=difficulte;
-        }
-        const difficulteNew=result.join(',');
-        
-        axios.post(`${process.env.REACT_APP_DB_URL}/majDifficulte?group=${group}&qcmNew=${difficulteNew}`)      
-        .then(response => {
-          const { message} = response.data;
-          if (message === 'success') {
-            return true;
-          } else {
-            return false;
-          }
-        })
-        .catch(error => {
-          console.error('Erreur lors de la maj de difficulte:', error);
-        });
-      })
-      .catch(error => {
-        console.error('Une erreur s\'est produite:', error);
-      });
-  }
+   const majDifficulte  =(game,difficulte) => {
+
+     let difficulteListe = [];
+
+     // Utiliser une promesse pour gérer de manière asynchrone la réponse axios
+     const fetchData = () => {
+       return new Promise((resolve, reject) => {
+         resolve(false);
+       });
+     };
+
+   }
   //juste pour integrer l'authentification à l'application globale.
   return (
     <DataContext.Provider value={{

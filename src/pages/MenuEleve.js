@@ -137,7 +137,10 @@ const MenuEleve = () => {
   }
 
   const selectOnline = () => {
-    setGameMode('online');
+
+    setShowPopup(true);
+    setPopupTitle("Erreur");
+    setPopupMessage("La fonctionnalité de jeu en ligne n'est plus disponible pour le moment. Veuillez nous excuser pour la gêne occasionnée.");
   }
 
   const selectSolo = () => {

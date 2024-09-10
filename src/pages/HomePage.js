@@ -50,7 +50,7 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    handleShowPopup("Service non disponible", "Nous regrettons de vous informer que ce projet n'est plus maintenu et que les serveurs sont actuellement hors service. Merci de votre compréhension.");
+    handleShowPopup("Service non disponible", "Nous regrettons de vous informer que ce projet n'est plus maintenu et que les serveurs sont actuellement hors service. Vous pouvez toujours jouer en solo, mais les fonctionnalités de jeu en ligne et de gestion de groupe ne sont plus disponibles. Les fonctionnalités de connexion et gestion de compte sont factices.  Nous vous remercions pour votre compréhension.");
   }, []);
 
     return (

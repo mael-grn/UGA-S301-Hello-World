@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import NavBar from '../component/NavBar';
 import ProfilSelection from '../component/register/ProfilSelection';
 import InscriptionForm from '../component/register/InscriptionForm';
+import PopupWindow from "../component/PopupWindow";
 
 //Cette page gère l'inscription d'un utilisateur. Elle affiche au besoins la selection du profil, puis le formulaire en fonction du profil.
 
@@ -10,11 +11,12 @@ const Inscription = () => {
     //ces variables d'etat permettent de verifier si l'utilisateur est un professeur ou un etudiant
     const [teacher, setTeacher] = useState(false);
     const [student, setStudent] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+
 
     //cette fonction est utilisé pour rendre l'utilisateur professeur
     const activateTeacher = () => {
-      setTeacher(true);
-      setStudent(false);
+      setShowPopup(true);
     }
 
     //cette fonction est utilisé pour rendre l'utilisateur étudiant
@@ -27,15 +29,21 @@ const Inscription = () => {
       setStudent(false);
       setTeacher(false);
     }
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
 
     return (
         <div className='Inscription'>
-        <header className='App-header'>
+
+            <header className='App-header'>
           <NavBar/>
         </header>
         
         <main>
-        {/* Affiche le formulaire d'inscription (InscriptionForm) seulement si teacher ou student est vrai */}
+            {showPopup && <PopupWindow closePopup={handleClosePopup} title={"Erreur"} message={"L'application étant en mode démo, il n'est plus possible de créer de compte professeur."} />}
+
+            {/* Affiche le formulaire d'inscription (InscriptionForm) seulement si teacher ou student est vrai */}
         {(teacher || student) && (
         <InscriptionForm
           //Passage en parametre de teacher pour le formulaire. Ainsi le formulaire s'adaptera si le profil est professeur ou etudiant
